@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hiện trạng — NetNam × Panasonic</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+.tab-btn.active .tb-dot{width:6px;height:6px;border-radius:50%;margin-left:4px;flex-shrink:0}
+.tab-btn:nth-child(1).active .tb-dot{background:var(--blue);box-shadow:0 0 6px var(--blue)}
+.tab-btn:nth-child(2).active .tb-dot{background:var(--orange);box-shadow:0 0 6px var(--orange)}
+.tab-btn:nth-child(3).active .tb-dot{background:var(--red);box-shadow:0 0 6px var(--red)}
+
+.section-title-sm{font-size:22px;font-weight:800;color:var(--white);margin-bottom:20px}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info-label{color:var(--g2);min-width:180px;flex-shrink:0;white-space:nowrap}
+.info-value{color:var(--g1);flex:1;min-width:0;word-break:break-word}
+
+.summary-bar{display:flex;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:20px}
+.sb-item{display:flex;flex-direction:column;gap:3px}
+.sb-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g3)}
+.sb-value{font-size:18px;font-weight:800;color:var(--white)}
+.sb-sep{width:1px;background:var(--border);align-self:stretch;margin:0 4px}
+
+.need-card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;gap:20px;align-items:flex-start;transition:all var(--tr)}
+.need-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.need-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.need-title{font-size:16px;font-weight:800;color:var(--white);margin-bottom:8px}
+.need-desc{font-size:13.5px;color:var(--g2);line-height:1.65}
+
+.zone-card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;transition:all var(--tr)}
+.zone-card:hover{transform:translateY(-3px);border-color:rgba(0,191,165,.2)}
+.zone-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.zone-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.zone-name{font-size:14px;font-weight:700;color:var(--white)}
+.zone-sub{font-size:11px;color:var(--g2);margin-top:2px}
+.zone-items{display:flex;flex-direction:column;gap:7px}
+.zone-item{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--g1);word-break:break-word}
+.zone-item::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;min-width:6px;margin-top:4px}
+.zi-blue::before{background:var(--blue)}.zi-teal::before{background:var(--teal)}.zi-purple::before{background:var(--purple)}.zi-orange::before{background:var(--orange)}.zi-red::before{background:var(--red)}
+
+.risk-card{background:var(--navy-card);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:all var(--tr)}
+.risk-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.risk-num{font-size:32px;font-weight:900;line-height:1;color:var(--red);opacity:.2;flex-shrink:0;width:40px}
+.risk-title{font-size:15px;font-weight:800;color:var(--white);margin-bottom:8px}
+.risk-desc{font-size:13px;color:var(--g2);line-height:1.65}
+
+.topo-box{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+.topo-box img{max-width:100%;border-radius:8px;display:block;margin:0 auto}
+.topo-note{font-size:12px;color:var(--g2);margin-top:12px;line-height:1.6;padding:12px;background:rgba(0,0,0,.2);border-radius:8px;border-left:3px solid var(--teal)}
+
+@media(max-width:900px){
+  .tab-btn{min-width:unset;font-size:12px;padding:9px 10px}
+  .grid-2{grid-template-columns:1fr}
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">🛡</div>
+    <div>
+      <div class="nav-title">NetNam × Panasonic</div>
+      <div class="nav-subtitle">Phân vùng IT · OT · IDMZ</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html"><span class="nav-icon">🏠</span> Tổng quan</a></li>
+    <li><a href="hien-trang.html" class="active"><span class="nav-icon">🖥</span> Hiện trạng</a></li>
+    <li><a href="phuong-an.html"><span class="nav-icon">🔀</span> Phương án</a></li>
+    <li><a href="tieu-chuan.html"><span class="nav-icon">📋</span> Tiêu chuẩn KT</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Tổng quan</a> <span>›</span> <span style="color:var(--g1)">Hiện trạng</span></div>
+  <h1 class="page-title">Hiện trạng <span class="accent">hệ thống mạng</span></h1>
+  <p class="page-desc">Đánh giá sơ bộ hạ tầng mạng tại 2 nhà máy Panasonic — ghi nhận mô hình hiện hữu, các tồn tại kỹ thuật và rủi ro cần giải quyết.</p>
+</div>
+
+<div class="tab-section">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="sw('tongquan',this)"><span class="tb-icon">📊</span> Mô hình hiện trạng <span class="tb-dot"></span></button>
+    <button class="tab-btn" onclick="sw('khokhan',this)"><span class="tb-icon">⚠️</span> Khó khăn & Tồn tại <span class="tb-dot"></span></button>
+    <button class="tab-btn" onclick="sw('ruiro',this)"><span class="tb-icon">🔴</span> Rủi ro <span class="tb-dot"></span></button>
+
+  </div>
+
+  <!-- PANEL: Tổng quan hiện trạng -->
+  <div class="tab-panel active" id="tab-tongquan">
+    <div class="summary-bar">
+      <div class="sb-item"><div class="sb-label">Nhà máy</div><div class="sb-value">2</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Fortigate HA</div><div class="sb-value">02x</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Core switch</div><div class="sb-value">Cisco 350</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Kết nối liên nhà máy</div><div class="sb-value">Fiber</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Tách OT</div><div class="sb-value">Có (cơ bản)</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">IDMZ</div><div class="sb-value" style="color:var(--red)">Chưa có</div></div>
+    </div>
+
+    <div class="section-title-sm">Mô hình mạng hiện trạng</div>
+    <div class="topo-box">
+      <div style="overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" font-family="Segoe UI, Arial, sans-serif" style="max-width:100%;height:auto;display:block">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A1628"/>
+      <stop offset="1" stop-color="#101f35"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <style>
+      .title{fill:#fff;font-size:30px;font-weight:800}
+      .sub{fill:#94A3B8;font-size:15px}
+      .zoneTitle{fill:#E2E8F0;font-size:18px;font-weight:800}
+      .nodeTitle{fill:#fff;font-size:16px;font-weight:800}
+      .nodeSub{fill:#CBD5E1;font-size:12px}
+      .small{fill:#94A3B8;font-size:12px}
+      .warn{fill:#F59E0B;font-size:13px;font-weight:700}
+      .link{stroke:#64748B;stroke-width:3;fill:none}
+      .fiber{stroke:#00BFA5;stroke-width:5;fill:none;stroke-dasharray:10 8}
+      .fw{fill:#7f1d1d;stroke:#EF4444;stroke-width:2}
+      .core{fill:#123d6f;stroke:#3B82F6;stroke-width:2}
+      .access{fill:#064e45;stroke:#00BFA5;stroke-width:2}
+      .ot{fill:#3b246b;stroke:#7C3AED;stroke-width:2}
+      .wan{fill:#1f2937;stroke:#94A3B8;stroke-width:2}
+      .note{fill:#271a08;stroke:#F59E0B;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <text x="58" y="62" class="title">PANASONIC - Mô hình mạng hiện trạng</text>
+  <text x="58" y="90" class="sub">Hai nhà máy kết nối qua fiber; Fortigate/Cisco 350 đang đảm nhiệm các vai trò gateway, core/distribution và tách OT sơ bộ.</text>
+
+  <rect x="54" y="124" width="1492" height="112" rx="20" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="78" y="158" class="zoneTitle">Internet / WAN</text>
+  <rect x="210" y="164" width="190" height="46" rx="12" class="wan" filter="url(#shadow)"/>
+  <text x="305" y="193" text-anchor="middle" class="nodeTitle">VNPT Internet 1</text>
+  <rect x="438" y="164" width="190" height="46" rx="12" class="wan" filter="url(#shadow)"/>
+  <text x="533" y="193" text-anchor="middle" class="nodeTitle">VNPT Internet 2</text>
+  <rect x="666" y="164" width="230" height="46" rx="12" class="wan" filter="url(#shadow)"/>
+  <text x="781" y="193" text-anchor="middle" class="nodeTitle">SD-WAN / Internet</text>
+
+  <rect x="54" y="274" width="712" height="570" rx="22" fill="#0d1b2f" stroke="#334155" stroke-width="1.5"/>
+  <text x="78" y="312" class="zoneTitle">Nhà máy 1</text>
+  <rect x="258" y="320" width="260" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="388" y="348" text-anchor="middle" class="nodeTitle">02x Fortigate HA</text>
+  <text x="388" y="370" text-anchor="middle" class="nodeSub">Internet / SD-WAN / WAN Edge</text>
+  <rect x="258" y="438" width="260" height="70" rx="14" class="core" filter="url(#shadow)"/>
+  <text x="388" y="466" text-anchor="middle" class="nodeTitle">Cisco 350</text>
+  <text x="388" y="488" text-anchor="middle" class="nodeSub">Core / Distribution</text>
+  <rect x="92" y="438" width="140" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="162" y="466" text-anchor="middle" class="nodeTitle">Fortigate</text>
+  <text x="162" y="488" text-anchor="middle" class="nodeSub">Gateway + DHCP</text>
+  <rect x="570" y="438" width="140" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="640" y="466" text-anchor="middle" class="nodeTitle">Fortigate</text>
+  <text x="640" y="488" text-anchor="middle" class="nodeSub">OT Firewall</text>
+  <rect x="118" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="186" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="320" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="388" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="522" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="590" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="118" y="690" width="170" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="203" y="724" text-anchor="middle" class="nodeTitle">PC / Printer / AP</text>
+  <rect x="348" y="690" width="170" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="433" y="724" text-anchor="middle" class="nodeTitle">PC / AP</text>
+  <rect x="566" y="690" width="126" height="58" rx="12" class="ot"/><text x="629" y="724" text-anchor="middle" class="nodeTitle">OT Network</text>
+
+  <rect x="834" y="274" width="712" height="570" rx="22" fill="#0d1b2f" stroke="#334155" stroke-width="1.5"/>
+  <text x="858" y="312" class="zoneTitle">Nhà máy 2</text>
+  <rect x="1060" y="438" width="260" height="70" rx="14" class="core" filter="url(#shadow)"/>
+  <text x="1190" y="466" text-anchor="middle" class="nodeTitle">Cisco 350</text>
+  <text x="1190" y="488" text-anchor="middle" class="nodeSub">Core / Distribution</text>
+  <rect x="1380" y="438" width="120" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="1440" y="466" text-anchor="middle" class="nodeTitle">Fortigate</text>
+  <text x="1440" y="488" text-anchor="middle" class="nodeSub">OT FW</text>
+  <rect x="922" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="990" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="1122" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="1190" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="1322" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="1390" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="922" y="690" width="160" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="1002" y="724" text-anchor="middle" class="nodeTitle">PC / AP</text>
+  <rect x="1134" y="690" width="160" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="1214" y="724" text-anchor="middle" class="nodeTitle">Server Mgmt</text>
+  <rect x="1377" y="690" width="126" height="58" rx="12" class="ot"/><text x="1440" y="724" text-anchor="middle" class="nodeTitle">OT Network</text>
+
+  <path d="M305 210 L388 320" class="link"/><path d="M533 210 L388 320" class="link"/><path d="M781 210 L388 320" class="link"/>
+  <path d="M388 390 L388 438" class="link"/><path d="M232 473 L258 473" class="link"/><path d="M518 473 L570 473" class="link"/>
+  <path d="M388 508 L388 548 L186 548 L186 570" class="link"/><path d="M388 508 L388 570" class="link"/><path d="M388 548 L590 548 L590 570" class="link"/>
+  <path d="M186 628 L203 690" class="link"/><path d="M388 628 L433 690" class="link"/><path d="M710 508 L730 508 L730 720 L692 720" class="link"/>
+  <path d="M518 473 C690 410 890 410 1060 473" class="fiber"/>
+  <rect x="672" y="416" width="238" height="22" rx="5" fill="#0d1b2f"/>
+  <text x="791" y="432" text-anchor="middle" class="small" style="fill:#00BFA5;font-weight:700">Fiber cable giữa 2 Cisco 350</text>
+  <path d="M1190 508 L1190 548 L990 548 L990 570" class="link"/><path d="M1190 508 L1190 570" class="link"/><path d="M1190 548 L1390 548 L1390 570" class="link"/>
+  <path d="M990 628 L1002 690" class="link"/><path d="M1190 628 L1214 690" class="link"/><path d="M1320 473 L1380 473" class="link"/><path d="M1500 508 L1520 508 L1520 720 L1503 720" class="link"/>
+
+  <rect x="64" y="872" width="1472" height="66" rx="16" class="note"/>
+  <text x="90" y="900" class="warn">Ghi chú hiện trạng:</text>
+  <text x="230" y="900" class="sub">Đã có dấu hiệu tách OT qua firewall, nhưng chưa thể hiện rõ IDMZ và các server trung gian cho luồng trao đổi IT/OT.</text>
+  <text x="230" y="923" class="sub">Cần kiểm tra lại VLAN, routing, gateway, firewall rule, logging, năng lực HA và khả năng tách access IT/OT.</text>
+</svg>
+      </div>
+      <div class="topo-note">
+        <strong style="color:var(--teal)">Ghi chú hiện trạng:</strong> Hai nhà máy kết nối qua fiber backbone giữa hai Cisco 350. Nhà máy 1 có cụm Fortigate HA phục vụ Internet/WAN/SD-WAN và 01 Fortigate Gateway/DHCP cho toàn hệ thống. Mỗi nhà máy có vùng OT riêng được tách qua Firewall Fortigate — tuy nhiên chưa có vùng IDMZ và các server trung gian cho luồng IT/OT.
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="section-title-sm" style="font-size:16px;margin-bottom:12px">🏭 Nhà máy 1</div>
+        <div class="zone-card" style="margin-bottom:12px">
+          <div class="zone-header">
+            <div class="zone-icon" style="background:rgba(59,130,246,.15)">🌐</div>
+            <div><div class="zone-name">WAN / Internet Edge</div><div class="zone-sub">Fortigate HA Cluster</div></div>
+          </div>
+          <ul class="zone-items">
+            <li class="zone-item zi-blue">02x Fortigate HA — Internet / SD-WAN / WAN Edge</li>
+            <li class="zone-item zi-blue">Kết nối VNPT Internet (2 đường)</li>
+          </ul>
+        </div>
+        <div class="zone-card" style="margin-bottom:12px">
+          <div class="zone-header">
+            <div class="zone-icon" style="background:rgba(0,191,165,.15)">🔀</div>
+            <div><div class="zone-name">Core / Distribution</div><div class="zone-sub">Cisco 350</div></div>
+          </div>
+          <ul class="zone-items">
+            <li class="zone-item zi-teal">01x Fortigate — Gateway + DHCP toàn hệ thống</li>
+            <li class="zone-item zi-teal">Nhiều switch access kết nối PC, AP, máy in</li>
+            <li class="zone-item zi-teal">Kết nối vùng OT qua Firewall Fortigate</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="section-title-sm" style="font-size:16px;margin-bottom:12px">🏭 Nhà máy 2</div>
+        <div class="zone-card" style="margin-bottom:12px">
+          <div class="zone-header">
+            <div class="zone-icon" style="background:rgba(0,191,165,.15)">🔀</div>
+            <div><div class="zone-name">Core / Distribution</div><div class="zone-sub">Cisco 350</div></div>
+          </div>
+          <ul class="zone-items">
+            <li class="zone-item zi-teal">Kết nối Nhà máy 1 qua Fiber Cable</li>
+            <li class="zone-item zi-teal">Switch access → PC, AP, Server Management</li>
+            <li class="zone-item zi-teal">Kết nối vùng OT qua Firewall Fortigate</li>
+          </ul>
+        </div>
+        <div class="zone-card">
+          <div class="zone-header">
+            <div class="zone-icon" style="background:rgba(245,158,11,.15)">⚙️</div>
+            <div><div class="zone-name">OT Network (cả 2 nhà máy)</div><div class="zone-sub">Được tách cơ bản qua Firewall</div></div>
+          </div>
+          <ul class="zone-items">
+            <li class="zone-item zi-orange">Tách khỏi LAN bằng Firewall Fortigate</li>
+            <li class="zone-item zi-orange">Chưa có IDMZ và server trung gian</li>
+            <li class="zone-item zi-orange">Mức độ phân tách cần kiểm tra lại chi tiết</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: Khó khăn & Tồn tại -->
+  <div class="tab-panel" id="tab-khokhan">
+    <div class="summary-bar">
+      <div class="sb-item"><div class="sb-label">Khó khăn ghi nhận</div><div class="sb-value">5</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Ưu tiên xử lý</div><div class="sb-value" style="color:var(--orange)">Cao</div></div>
+    </div>
+
+    <div class="grid-auto">
+      <div class="need-card">
+        <div class="need-icon" style="background:rgba(59,130,246,.15)">🔎</div>
+        <div>
+          <div class="need-title">Chưa có bức tranh đầy đủ về năng lực thiết bị</div>
+          <div class="need-desc">Cần kiểm tra toàn bộ cấu hình để xác định thiết bị có hỗ trợ stack/HA, VLAN, routing, ACL, 802.1X/MAB, logging, SNMP/syslog hay không. Firewall hiện hữu cũng cần đánh giá năng lực cho mô hình đa vùng.</div>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon" style="background:rgba(0,191,165,.15)">🗺</div>
+        <div>
+          <div class="need-title">Chưa chốt mô hình logic IT - OT - IDMZ</div>
+          <div class="need-desc">Hiện mới có mô hình vật lý sơ bộ. Cần chốt danh sách VLAN, vị trí gateway, luồng kết nối được phép, dịch vụ đặt trong IDMZ, firewall rule và cơ chế giám sát.</div>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon" style="background:rgba(245,158,11,.15)">🔌</div>
+        <div>
+          <div class="need-title">Lớp access có thể đang dùng chung IT và OT</div>
+          <div class="need-desc">Nếu cùng một switch access kết nối cả IT và OT, việc phân tách chỉ bằng VLAN chưa đáp ứng mục tiêu độc lập vận hành. Khi switch lỗi, cả hai hệ đều bị ảnh hưởng.</div>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon" style="background:rgba(239,68,68,.15)">⚠️</div>
+        <div>
+          <div class="need-title">Lớp core có nguy cơ là điểm lỗi đơn</div>
+          <div class="need-desc">Nếu mỗi nhà máy chỉ có một thiết bị core đơn lẻ (Cisco 350), khi sự cố xảy ra sẽ ảnh hưởng diện rộng cả IT lẫn OT. Cần đánh giá khả năng stack/HA và phương án bổ sung.</div>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon" style="background:rgba(124,58,237,.15)">🏗</div>
+        <div>
+          <div class="need-title">IDMZ chưa được thể hiện trong mô hình</div>
+          <div class="need-desc">Không thấy vùng IDMZ với các thành phần: Jump server, File transfer server, Patch repository, Historian mirror, Malware scan/CDR, Syslog collector. Thiếu IDMZ dẫn đến kết nối trực tiếp IT-OT qua rule firewall đơn lẻ.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: Rủi ro -->
+  <div class="tab-panel" id="tab-ruiro">
+    <div class="summary-bar">
+      <div class="sb-item"><div class="sb-label">Rủi ro xác định</div><div class="sb-value" style="color:var(--red)">5</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Mức độ</div><div class="sb-value" style="color:var(--red)">Cao</div></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item"><div class="sb-label">Khuyến nghị</div><div class="sb-value" style="color:var(--orange)">Xử lý sớm</div></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="risk-card">
+        <div class="risk-num">01</div>
+        <div>
+          <div class="risk-title">🔴 Truy cập trực tiếp từ IT sang OT</div>
+          <div class="risk-desc">Nếu IT có thể truy cập trực tiếp vào OT qua firewall rule đơn lẻ, malware hoặc tài khoản bị compromise ở vùng IT có thể trở thành đường đi vào hệ thống sản xuất, gây nguy cơ dừng dây chuyền hoặc thay đổi tham số điều khiển.</div>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">02</div>
+        <div>
+          <div class="risk-title">🔴 Gián đoạn sản xuất do thiết bị đơn lẻ</div>
+          <div class="risk-desc">Core switch hoặc firewall giữ vai trò gateway/DHCP/routing cho nhiều vùng mà không có HA phù hợp sẽ là điểm lỗi đơn. Khi sự cố, ảnh hưởng lan rộng tới cả IT và OT cùng lúc.</div>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">03</div>
+        <div>
+          <div class="risk-title">🔴 Khó kiểm soát luồng dữ liệu IT/OT</div>
+          <div class="risk-desc">Khi chưa có IDMZ, các luồng như file transfer, remote maintenance, patch update, historian/reporting có thể được mở trực tiếp qua firewall. Điều này làm khó kiểm soát: ai truy cập, từ đâu đến đâu, dùng giao thức nào, có ghi log hay không, có kiểm tra malware hay không.</div>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">04</div>
+        <div>
+          <div class="risk-title">🟠 Vận hành chung access switch IT và OT</div>
+          <div class="risk-desc">Sự cố cấu hình hoặc lỗi vật lý ở lớp access có thể ảnh hưởng đồng thời cả IT và OT. Việc phân quyền quản trị, bảo trì và xử lý sự cố cũng khó tách bạch giữa hai đội vận hành.</div>
+        </div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-num">05</div>
+        <div>
+          <div class="risk-title">🟠 Thiếu căn cứ đầu tư thiết bị</div>
+          <div class="risk-desc">Chưa kiểm tra năng lực thiết bị hiện tại dẫn đến đề xuất BOM thiếu cơ sở — có thể mua thừa hoặc tận dụng thiết bị không đáp ứng yêu cầu. Cần có danh sách rõ: thiết bị nào đạt, nào nâng cấp, nào thay thế.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">🛡</div>
+    <div class="footer-info"><strong>NetNam × Panasonic</strong> — Giải pháp phân vùng mạng IT · OT · IDMZ cho hệ thống nhà máy</div>
+  </div>
+  <div class="footer-right">NetNam Corporation · v1.0 — 2026</div>
+</footer>
+
+<script>
+  addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>30));
+  function sw(id,btn){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
