@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phương án — NetNam × Panasonic</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+.layout{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 40px 80px;display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:start}
+.page-header{max-width:1300px}
+
+.sidebar{position:sticky;top:80px}
+.sidebar-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g3);padding:0 12px;margin-bottom:10px}
+.side-tab{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:600;color:var(--g2);cursor:pointer;border:none;background:transparent;width:100%;text-align:left;transition:all var(--tr);margin-bottom:4px;position:relative}
+.side-tab:hover{color:var(--white);background:var(--glass)}
+.side-tab.active{color:var(--white);background:var(--navy-card);border:1px solid var(--border)}
+.side-tab.active::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:2px}
+.side-tab:nth-child(1).active::before{background:var(--teal)}
+.side-tab:nth-child(2).active::before{background:var(--blue)}
+.side-tab:nth-child(3).active::before{background:var(--purple)}
+.side-tab:nth-child(4).active::before{background:var(--orange)}
+.side-tab:nth-child(5).active::before{background:var(--green)}
+.side-tab:nth-child(6).active::before{background:var(--red)}
+.side-tab:nth-child(7).active::before{background:var(--cyan)}
+.side-tab:nth-child(8).active::before{background:var(--teal)}
+.side-icon{font-size:16px;flex-shrink:0}
+.side-dot{width:6px;height:6px;border-radius:50%;margin-left:auto;flex-shrink:0;opacity:0;transition:opacity var(--tr)}
+.side-tab.active .side-dot{opacity:1;background:var(--teal);box-shadow:0 0 6px var(--teal)}
+
+.conn-card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--r);padding:28px;position:relative;overflow:hidden;transition:all var(--tr)}
+.conn-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.conn-card.recommended{border-color:rgba(0,191,165,.35)}
+.conn-card.recommended::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--blue))}
+.conn-tag{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:5px}
+.conn-icon{font-size:32px;margin-bottom:14px}
+.conn-title{font-size:18px;font-weight:800;color:var(--white);margin-bottom:10px}
+.conn-desc{font-size:13px;color:var(--g2);line-height:1.6;margin-bottom:16px}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pro-box,.con-box{background:rgba(0,0,0,.2);border-radius:8px;padding:12px}
+.pro-box .label{color:var(--green);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.con-box .label{color:var(--red);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+
+.dr-phase{display:flex;gap:16px;align-items:flex-start;padding:18px;background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;transition:all var(--tr)}
+.dr-phase:hover{border-color:rgba(0,191,165,.2)}
+.dr-num{font-size:28px;font-weight:900;line-height:1;color:var(--teal);opacity:.25;width:40px;flex-shrink:0}
+.dr-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px}
+.dr-desc{font-size:13px;color:var(--g2);line-height:1.6}
+
+.rule-row{display:grid;grid-template-columns:1fr 1fr 1.5fr 1fr;gap:0;background:rgba(0,0,0,.15);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:8px;align-items:center;font-size:12.5px;transition:all var(--tr)}
+.rule-row:hover{background:rgba(0,191,165,.04);border-color:rgba(0,191,165,.15)}
+.rule-src{color:var(--teal);font-weight:600}
+.rule-dst{color:var(--blue);font-weight:600}
+.rule-purpose{color:var(--g1)}
+.rule-policy{color:var(--orange);font-size:11px}
+.rule-deny{color:var(--red);font-weight:700}
+.rule-header{background:rgba(0,0,0,.3);border-color:transparent;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g3)}
+.rule-header:hover{background:rgba(0,0,0,.3);border-color:transparent}
+
+.lld-wrap{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center}
+.lld-img{max-width:100%;border-radius:8px;border:1px solid var(--border);cursor:zoom-in;transition:transform var(--tr)}
+.lld-img:hover{transform:scale(1.01);box-shadow:var(--shadow)}
+
+.deliverable-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-size:13px;color:var(--g1);transition:all var(--tr)}
+.deliverable-item:hover{border-color:rgba(0,191,165,.2);background:rgba(0,191,165,.04)}
+.di-icon{font-size:16px;flex-shrink:0}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+
+@media(max-width:960px){
+  .page-header,.layout{padding-left:20px;padding-right:20px}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;display:flex;flex-wrap:wrap;gap:6px}
+  .sidebar-label{display:none}
+  .side-tab{width:auto;flex:1;min-width:120px;justify-content:center}
+  .side-dot{display:none}.pros-cons{grid-template-columns:1fr}
+  .rule-row{grid-template-columns:1fr}
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">🛡</div>
+    <div>
+      <div class="nav-title">NetNam × Panasonic</div>
+      <div class="nav-subtitle">Phân vùng IT · OT · IDMZ</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html"><span class="nav-icon">🏠</span> Tổng quan</a></li>
+    <li><a href="hien-trang.html"><span class="nav-icon">🖥</span> Hiện trạng</a></li>
+    <li><a href="phuong-an.html" class="active"><span class="nav-icon">🔀</span> Phương án</a></li>
+    <li><a href="tieu-chuan.html"><span class="nav-icon">📋</span> Tiêu chuẩn KT</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Tổng quan</a> <span>›</span> <span style="color:var(--g1)">Phương án kỹ thuật</span></div>
+  <h1 class="page-title">Phương án <span class="accent">Kỹ thuật Đề xuất</span></h1>
+  <p class="page-desc">Thiết kế phân vùng IT · IDMZ · OT theo nguyên tắc Purdue Model — bao gồm phương án firewall, lớp core, lớp IDMZ, rule matrix và lộ trình 5 giai đoạn triển khai.</p>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Nội dung</div>
+    <button class="side-tab active" onclick="sw('tongthe',this)"><span class="side-icon">🏗</span> Tổng thể <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('it',this)"><span class="side-icon">🖥</span> Lớp IT <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('ot',this)"><span class="side-icon">⚙️</span> Lớp OT <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('idmz',this)"><span class="side-icon">🏛</span> Lớp IDMZ <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('firewall',this)"><span class="side-icon">🛡</span> Firewall <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('rule',this)"><span class="side-icon">📜</span> Rule & Policy <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('loTrinh',this)"><span class="side-icon">🗺</span> Lộ trình <span class="side-dot"></span></button>
+    <button class="side-tab" onclick="sw('output',this)"><span class="side-icon">📦</span> Deliverables <span class="side-dot"></span></button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div>
+
+    <!-- PANEL: Tổng thể -->
+    <div class="tab-panel active" id="tab-tongthe">
+      <div class="sec-label">Phương án tổng thể</div>
+      <h2 class="sec-title">Nguyên tắc thiết kế & Mô hình đề xuất</h2>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-title">📐 Nguyên tắc thiết kế</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+          <div class="deliverable-item"><span class="di-icon">✅</span> Tách rõ IT Zone, IDMZ Zone và OT Zone</div>
+          <div class="deliverable-item"><span class="di-icon">🚫</span> Không cho phép IT truy cập trực tiếp vào OT</div>
+          <div class="deliverable-item"><span class="di-icon">🔀</span> Mọi luồng IT/OT phải đi qua IDMZ và firewall rule được phê duyệt</div>
+          <div class="deliverable-item"><span class="di-icon">🔒</span> Lớp core và firewall cần có tính sẵn sàng cao (HA)</div>
+          <div class="deliverable-item"><span class="di-icon">🔌</span> Lớp access nên tách riêng IT và OT nếu khả thi</div>
+          <div class="deliverable-item"><span class="di-icon">♻️</span> Thiết bị hiện hữu ưu tiên tận dụng nếu đáp ứng tiêu chuẩn</div>
+        </div>
+      </div>
+
+      <div class="lld-wrap">
+        <div style="font-size:12px;color:var(--g3);margin-bottom:16px;text-align:left">📊 Mô hình logic đề xuất IT · IDMZ · OT</div>
+        <div style="overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" font-family="Segoe UI, Arial, sans-serif" style="max-width:100%;height:auto;display:block">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A1628"/>
+      <stop offset="1" stop-color="#0e2438"/>
+    </linearGradient>
+    <filter id="shadow2" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <style>
+      .title{fill:#fff;font-size:30px;font-weight:800}
+      .sub{fill:#94A3B8;font-size:15px}
+      .zoneTitle{fill:#E2E8F0;font-size:19px;font-weight:800}
+      .nodeTitle{fill:#fff;font-size:16px;font-weight:800}
+      .nodeSub{fill:#CBD5E1;font-size:12px}
+      .small{fill:#94A3B8;font-size:12px}
+      .link{stroke:#64748B;stroke-width:3;fill:none}
+      .secure{stroke:#00BFA5;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .deny{stroke:#EF4444;stroke-width:3;stroke-dasharray:9 7;fill:none}
+      .edge{fill:#7f1d1d;stroke:#EF4444;stroke-width:2}
+      .it{fill:#123d6f;stroke:#3B82F6;stroke-width:2}
+      .idmz{fill:#064e45;stroke:#00BFA5;stroke-width:2}
+      .ot{fill:#3b246b;stroke:#7C3AED;stroke-width:2}
+      .note{fill:#071f1c;stroke:#00BFA5;stroke-width:1.5}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#00BFA5"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1050" fill="url(#bg2)"/>
+  <text x="58" y="62" class="title">PANASONIC - Mô hình đề xuất nâng cấp IT - IDMZ - OT</text>
+  <text x="58" y="90" class="sub">Mô hình mục tiêu tách rõ vùng IT, IDMZ và OT; mọi luồng IT/OT đi qua IDMZ và firewall rule được phê duyệt.</text>
+
+  <rect x="70" y="140" width="1460" height="95" rx="22" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <rect x="170" y="163" width="250" height="50" rx="14" class="edge" filter="url(#shadow2)"/>
+  <text x="295" y="193" text-anchor="middle" class="nodeTitle">Internet / SD-WAN / WAN</text>
+  <rect x="545" y="156" width="310" height="64" rx="16" class="edge" filter="url(#shadow2)"/>
+  <text x="700" y="184" text-anchor="middle" class="nodeTitle">02x Fortigate HA</text>
+  <text x="700" y="205" text-anchor="middle" class="nodeSub">VDOM-WAN / VDOM-Edge</text>
+  <rect x="1000" y="163" width="290" height="50" rx="14" fill="#172554" stroke="#60A5FA" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1145" y="193" text-anchor="middle" class="nodeTitle">VPN / MFA / Remote Access</text>
+  <path d="M420 188 L545 188" class="secure"/><path d="M855 188 L1000 188" class="secure"/>
+
+  <rect x="70" y="290" width="405" height="520" rx="24" fill="#0d1b2f" stroke="#3B82F6" stroke-width="2"/>
+  <text x="98" y="330" class="zoneTitle">IT Zone</text>
+  <rect x="132" y="365" width="280" height="70" rx="14" class="it" filter="url(#shadow2)"/>
+  <text x="272" y="393" text-anchor="middle" class="nodeTitle">Firewall / VDOM-IT</text>
+  <text x="272" y="415" text-anchor="middle" class="nodeSub">Gateway / policy cho mạng IT</text>
+  <rect x="132" y="488" width="280" height="70" rx="14" class="it" filter="url(#shadow2)"/>
+  <text x="272" y="516" text-anchor="middle" class="nodeTitle">IT Core Switch Stack</text>
+  <text x="272" y="538" text-anchor="middle" class="nodeSub">HA / VLAN / routing theo thiết kế</text>
+  <rect x="132" y="608" width="280" height="62" rx="14" class="it" filter="url(#shadow2)"/>
+  <text x="272" y="646" text-anchor="middle" class="nodeTitle">IT Access Switches</text>
+  <rect x="132" y="713" width="280" height="62" rx="14" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/>
+  <text x="272" y="750" text-anchor="middle" class="nodeTitle">PC / Printer / AP / Server</text>
+  <path d="M272 435 L272 488" class="link"/><path d="M272 558 L272 608" class="link"/><path d="M272 670 L272 713" class="link"/>
+
+  <rect x="560" y="290" width="480" height="520" rx="24" fill="#08231f" stroke="#00BFA5" stroke-width="2"/>
+  <text x="588" y="330" class="zoneTitle">IDMZ Zone</text>
+  <rect x="640" y="365" width="320" height="70" rx="14" class="idmz" filter="url(#shadow2)"/>
+  <text x="800" y="393" text-anchor="middle" class="nodeTitle">Firewall / VDOM-IDMZ</text>
+  <text x="800" y="415" text-anchor="middle" class="nodeSub">Điểm kiểm soát trung gian IT/OT</text>
+  <rect x="610" y="486" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="692" y="520" text-anchor="middle" class="nodeTitle">Jump Server</text>
+  <rect x="825" y="486" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="908" y="520" text-anchor="middle" class="nodeTitle">File Gateway</text>
+  <rect x="610" y="582" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="692" y="616" text-anchor="middle" class="nodeTitle">Patch / AV Repo</text>
+  <rect x="825" y="582" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="908" y="616" text-anchor="middle" class="nodeTitle">Historian Mirror</text>
+  <rect x="610" y="678" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="692" y="712" text-anchor="middle" class="nodeTitle">Malware Scan</text>
+  <rect x="825" y="678" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="908" y="712" text-anchor="middle" class="nodeTitle">Syslog / Monitor</text>
+  <path d="M800 435 L800 466 L692 466 L692 486" class="link"/><path d="M800 466 L908 466 L908 486" class="link"/>
+  <path d="M692 544 L692 582" class="link"/><path d="M908 544 L908 582" class="link"/><path d="M692 640 L692 678" class="link"/><path d="M908 640 L908 678" class="link"/>
+
+  <rect x="1125" y="290" width="405" height="520" rx="24" fill="#1f1538" stroke="#7C3AED" stroke-width="2"/>
+  <text x="1153" y="330" class="zoneTitle">OT Zone</text>
+  <rect x="1187" y="365" width="280" height="70" rx="14" class="ot" filter="url(#shadow2)"/>
+  <text x="1327" y="393" text-anchor="middle" class="nodeTitle">Firewall / VDOM-OT</text>
+  <text x="1327" y="415" text-anchor="middle" class="nodeSub">Policy vào vùng sản xuất</text>
+  <rect x="1187" y="488" width="280" height="70" rx="14" class="ot" filter="url(#shadow2)"/>
+  <text x="1327" y="516" text-anchor="middle" class="nodeTitle">OT Core Switch Stack</text>
+  <text x="1327" y="538" text-anchor="middle" class="nodeSub">Tách độc lập nếu khả thi</text>
+  <rect x="1187" y="608" width="280" height="62" rx="14" class="ot" filter="url(#shadow2)"/>
+  <text x="1327" y="646" text-anchor="middle" class="nodeTitle">OT Access Switches</text>
+  <rect x="1187" y="713" width="280" height="62" rx="14" fill="#3b246b" stroke="#A78BFA" stroke-width="1.5"/>
+  <text x="1327" y="750" text-anchor="middle" class="nodeTitle">PLC / HMI / SCADA / Line</text>
+  <path d="M1327 435 L1327 488" class="link"/><path d="M1327 558 L1327 608" class="link"/><path d="M1327 670 L1327 713" class="link"/>
+
+  <path d="M700 220 C700 260 272 260 272 365" class="secure"/>
+  <path d="M412 400 L640 400" class="secure"/>
+  <path d="M960 400 L1187 400" class="secure"/>
+  <path d="M412 640 C520 640 520 250 1187 640" class="deny"/>
+  <text x="800" y="258" text-anchor="middle" class="small">Luồng hợp lệ: IT / VPN / OT đi qua IDMZ và firewall rule đã phê duyệt</text>
+  <text x="800" y="280" text-anchor="middle" fill="#F87171" font-size="13" font-weight="800">Không cho phép kết nối trực tiếp IT ↔ OT</text>
+
+  <rect x="70" y="858" width="1460" height="126" rx="18" class="note"/>
+  <text x="100" y="894" fill="#00E5C8" font-size="16" font-weight="800">Nguyên tắc đề xuất</text>
+  <text x="100" y="925" class="sub">1. Default deny giữa IT, IDMZ và OT; chỉ mở source/destination/port/protocol theo luồng nghiệp vụ đã được phê duyệt.</text>
+  <text x="100" y="950" class="sub">2. Remote access qua VPN/MFA và jump server trong IDMZ; file đưa vào OT qua file gateway và malware scan/CDR nếu áp dụng.</text>
+  <text x="100" y="975" class="sub">3. Lớp core/firewall cần HA; access IT/OT nên tách riêng nếu khả thi; thiết bị hiện hữu chỉ tận dụng khi đáp ứng tiêu chuẩn kỹ thuật.</text>
+</svg>
+        </div>
+      </div>
+
+      <div class="note-box" style="margin-top:20px">
+        <strong style="color:var(--teal)">Bước đầu tiên:</strong> Kiểm tra và đánh giá toàn bộ thiết bị mạng hiện tại trước khi chốt phương án tận dụng, nâng cấp hoặc thay thế. Mô hình mục tiêu cần tách rõ IT, OT và IDMZ, tránh truy cập trực tiếp IT sang OT, đồng thời nâng cao tính sẵn sàng ở lớp core và firewall.
+      </div>
+    </div>
+
+    <!-- PANEL: Lớp IT -->
+    <div class="tab-panel" id="tab-it">
+      <div class="sec-label">Lớp IT</div>
+      <h2 class="sec-title">Mạng IT — Thiết kế & Đề xuất</h2>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-title">🖥 Kiến trúc lớp IT</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <div class="deliverable-item"><span class="di-icon">➕</span> Bổ sung 1 cặp core switch stack cho hệ IT để nâng cao tính sẵn sàng</div>
+          <div class="deliverable-item"><span class="di-icon">🔄</span> Nếu Cisco 350 hỗ trợ stack và đáp ứng hiệu năng — có thể cân nhắc tận dụng lại</div>
+          <div class="deliverable-item"><span class="di-icon">🔌</span> Chuyển uplink từ các switch access IT lên cặp core switch stack</div>
+          <div class="deliverable-item"><span class="di-icon">🏷</span> Chuẩn hóa VLAN: user, server, printer, wireless, management, guest/vendor</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📋 VLAN Plan gợi ý (cần xác nhận khi thiết kế chi tiết)</div>
+        <div class="tbl-wrap" style="margin-top:12px"><table>
+          <thead><tr><th>VLAN ID</th><th>Tên VLAN</th><th>Phạm vi</th><th>Ghi chú</th></tr></thead>
+          <tbody>
+            <tr><td><code>10</code></td><td>IT-User</td><td>Máy tính văn phòng, laptop</td><td>Cần xác nhận</td></tr>
+            <tr><td><code>20</code></td><td>IT-Server</td><td>File server, print server, AD</td><td>Cần xác nhận</td></tr>
+            <tr><td><code>30</code></td><td>IT-Wireless</td><td>AP — kết nối Wi-Fi văn phòng</td><td>Cần xác nhận</td></tr>
+            <tr><td><code>40</code></td><td>IT-Printer</td><td>Máy in</td><td>Cần xác nhận</td></tr>
+            <tr><td><code>50</code></td><td>Management</td><td>Quản trị switch, firewall, AP</td><td>Cần xác nhận</td></tr>
+            <tr><td><code>60</code></td><td>Guest/Vendor</td><td>Truy cập Internet tạm thời</td><td>Cần xác nhận</td></tr>
+          </tbody>
+        </table></div>
+        <div style="font-size:12px;color:var(--g3);margin-top:8px">⚠️ Danh sách VLAN cần chốt trong Giai đoạn 2 — Thiết kế chi tiết</div>
+      </div>
+    </div>
+
+    <!-- PANEL: Lớp OT -->
+    <div class="tab-panel" id="tab-ot">
+      <div class="sec-label">Lớp OT</div>
+      <h2 class="sec-title">Mạng OT — Thiết kế & Yêu cầu</h2>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-title">⚙️ Kiến trúc lớp OT</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <div class="deliverable-item"><span class="di-icon">➕</span> Cân nhắc bổ sung cặp core switch stack riêng cho hệ OT</div>
+          <div class="deliverable-item"><span class="di-icon">🔌</span> Switch access OT kết nối uplink lên OT core stack</div>
+          <div class="deliverable-item"><span class="di-icon">🏷</span> PLC, HMI, SCADA, engineering workstation, line server vào VLAN/subnet riêng</div>
+          <div class="deliverable-item"><span class="di-icon">🚫</span> OT không truy cập Internet trực tiếp</div>
+          <div class="deliverable-item"><span class="di-icon">🔀</span> Mọi luồng OT ↔ IT phải đi qua IDMZ</div>
+          <div class="deliverable-item"><span class="di-icon">📋</span> Thay đổi VLAN, IP, port, firewall rule OT cần quy trình phê duyệt riêng</div>
+        </div>
+      </div>
+
+      <div class="warn-box" style="margin-bottom:20px">
+        <strong>Trường hợp chưa tách vật lý hoàn toàn:</strong> Nếu chưa thể tách vật lý access switch IT và OT — cần tối thiểu tách VLAN, áp dụng port security, quản lý port và logging chặt chẽ.
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔌 Kiểm tra lớp access — Phân loại port</div>
+        <div class="tbl-wrap" style="margin-top:12px"><table>
+          <thead><tr><th>Loại kết nối</th><th>Hướng xử lý</th><th>Switch mục tiêu</th></tr></thead>
+          <tbody>
+            <tr><td>IT User (PC, laptop)</td><td>Đưa vào VLAN IT-User</td><td>IT Access Switch</td></tr>
+            <tr><td>IT Server</td><td>Đưa vào VLAN IT-Server</td><td>IT Access Switch</td></tr>
+            <tr><td>Printer</td><td>VLAN Printer riêng</td><td>IT Access Switch</td></tr>
+            <tr><td>AP Wi-Fi</td><td>VLAN Wireless riêng</td><td>IT Access Switch</td></tr>
+            <tr><td>OT Device (PLC, HMI)</td><td>VLAN OT riêng, tách access switch</td><td>OT Access Switch</td></tr>
+            <tr><td>Vendor / Maintenance</td><td>VLAN Guest/Vendor, qua Jump Server</td><td>IDMZ / IT Access</td></tr>
+            <tr><td>Management (switch, FW)</td><td>VLAN Management riêng, ACL chặt</td><td>Management Switch</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- PANEL: Lớp IDMZ -->
+    <div class="tab-panel" id="tab-idmz">
+      <div class="sec-label">Lớp IDMZ</div>
+      <h2 class="sec-title">Industrial DMZ — Vùng trung gian bắt buộc</h2>
+
+      <div class="note-box" style="margin-bottom:24px">
+        <strong style="color:var(--teal)">Vai trò IDMZ:</strong> Là vùng đệm bắt buộc giữa IT và OT. Mọi kết nối từ IT vào OT (và ngược lại) phải đi qua dịch vụ trung gian đặt trong IDMZ — không được kết nối xuyên trực tiếp.
+      </div>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-title">🏗 Hạ tầng máy chủ IDMZ — Đề xuất ảo hóa</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <div class="deliverable-item"><span class="di-icon">🖥</span> Tối thiểu 02 server vật lý chạy ảo hóa (hypervisor)</div>
+          <div class="deliverable-item"><span class="di-icon">💾</span> Shared storage hoặc cơ chế replication phù hợp với yêu cầu HA</div>
+          <div class="deliverable-item"><span class="di-icon">🌐</span> VLAN riêng cho management, server service và backup</div>
+          <div class="deliverable-item"><span class="di-icon">➕</span> Tạo thêm VM cho chức năng IDMZ mới mà không cần bổ sung server vật lý</div>
+          <div class="deliverable-item"><span class="di-icon">🔌</span> 1 hoặc 1 cặp switch access/server switch cho kết nối IDMZ</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📋 Thành phần IDMZ đề xuất</div>
+        <div class="tbl-wrap" style="margin-top:12px"><table>
+          <thead><tr><th>Thành phần</th><th>Vai trò</th><th>Ưu tiên</th></tr></thead>
+          <tbody>
+            <tr><td>🚪 <strong>Jump Server / Bastion Host</strong></td><td>Điểm truy cập trung gian cho IT/OT admin và vendor — xác thực, ghi log phiên</td><td><span class="badge b-red">Bắt buộc</span></td></tr>
+            <tr><td>📁 <strong>File Transfer / Data Exchange</strong></td><td>Trung chuyển file/dữ liệu giữa IT và OT — scan mã độc trước khi đưa vào OT</td><td><span class="badge b-red">Bắt buộc</span></td></tr>
+            <tr><td>🔄 <strong>Patch / AV Update Repository</strong></td><td>Điểm trung gian cập nhật bản vá, antivirus — OT lấy bản vá từ relay trong IDMZ</td><td><span class="badge b-orange">Khuyến nghị</span></td></tr>
+            <tr><td>📊 <strong>Historian Mirror / Reporting</strong></td><td>Nhận dữ liệu sản xuất từ OT để IT khai thác báo cáo — không truy cập trực tiếp OT</td><td><span class="badge b-orange">Khuyến nghị</span></td></tr>
+            <tr><td>🦠 <strong>Malware Scan / CDR</strong></td><td>Kiểm tra file trước khi đưa vào OT — Content Disarm and Reconstruction</td><td><span class="badge b-orange">Khuyến nghị</span></td></tr>
+            <tr><td>📡 <strong>Syslog / Monitoring Collector</strong></td><td>Thu thập log và trạng thái từ thiết bị IT/OT — phục vụ giám sát tập trung</td><td><span class="badge b-orange">Khuyến nghị</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- PANEL: Firewall -->
+    <div class="tab-panel" id="tab-firewall">
+      <div class="sec-label">Lớp Firewall</div>
+      <h2 class="sec-title">Phương án triển khai Firewall</h2>
+
+      <div class="grid-2">
+        <div class="conn-card">
+          <div class="conn-icon">🔒</div>
+          <div class="conn-title">Phương án A — Firewall riêng từng vùng</div>
+          <div class="conn-desc">Triển khai firewall/cặp firewall riêng cho IT/WAN, IDMZ và OT. Tách vật lý hoàn toàn giữa các vùng.</div>
+          <div class="pros-cons">
+            <div class="pro-box">
+              <div class="label">Ưu điểm</div>
+              <ul class="dot-list green">
+                <li>Tách vật lý rõ ràng</li>
+                <li>Giảm rủi ro ảnh hưởng chéo</li>
+                <li>Phù hợp yêu cầu tách biệt cao</li>
+              </ul>
+            </div>
+            <div class="con-box">
+              <div class="label">Hạn chế</div>
+              <ul class="dot-list">
+                <li>Tăng số lượng thiết bị</li>
+                <li>Chi phí đầu tư & vận hành cao hơn</li>
+                <li>Cấu hình và HA phức tạp hơn</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="conn-card recommended">
+          <div class="conn-tag b-teal">Cân nhắc</div>
+          <div class="conn-icon">🛡</div>
+          <div class="conn-title">Phương án B — Fortigate HA + VDOM</div>
+          <div class="conn-desc">1 cặp Fortigate cấu hình cao chạy HA, chia VDOM cho từng vùng: VDOM-Edge, VDOM-IT, VDOM-IDMZ, VDOM-OT.</div>
+          <div class="pros-cons">
+            <div class="pro-box">
+              <div class="label">Ưu điểm</div>
+              <ul class="dot-list green">
+                <li>Tập trung thiết bị, gọn vận hành</li>
+                <li>Tách logic policy IT / IDMZ / OT</li>
+                <li>Phân quyền quản trị theo VDOM</li>
+                <li>Tập trung logging, VPN, SD-WAN</li>
+              </ul>
+            </div>
+            <div class="con-box">
+              <div class="label">Điều kiện cần kiểm tra</div>
+              <ul class="dot-list">
+                <li>Hiệu năng đủ cho tổng traffic IT+OT+IDMZ+VPN</li>
+                <li>License VDOM đáp ứng yêu cầu</li>
+                <li>Inter-VDOM link, routing, policy rõ ràng</li>
+                <li>HA failover kiểm thử kỹ</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <div class="card-title">🏗 Cấu trúc VDOM đề xuất (Phương án B)</div>
+        <div class="tbl-wrap" style="margin-top:12px"><table>
+          <thead><tr><th>VDOM</th><th>Vai trò</th><th>Ghi chú</th></tr></thead>
+          <tbody>
+            <tr><td><code>VDOM-Edge</code></td><td>Internet, SD-WAN, VPN WAN</td><td>Kế thừa Fortigate HA hiện tại</td></tr>
+            <tr><td><code>VDOM-IT</code></td><td>Gateway/firewall mạng IT</td><td>Policy cho IT user, server, wireless</td></tr>
+            <tr><td><code>VDOM-IDMZ</code></td><td>Kiểm soát vùng IDMZ</td><td>Kết nối từ IT và OT đến IDMZ server</td></tr>
+            <tr><td><code>VDOM-OT-NM1</code></td><td>Firewall OT Nhà máy 1</td><td>Có thể tách riêng nếu quản lý độc lập</td></tr>
+            <tr><td><code>VDOM-OT-NM2</code></td><td>Firewall OT Nhà máy 2</td><td>Tùy yêu cầu tách quản lý theo nhà máy</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="risk-box" style="margin-top:20px">
+        <div class="risk-title">⚠ Khuyến nghị quan trọng</div>
+        Nếu chọn Phương án B — cần sizing và kiểm tra kỹ năng đáp ứng hiệu năng, license, HA và vận hành trước khi chốt. Mặc định deny all giữa các VDOM, chỉ mở rule theo luồng nghiệp vụ đã phê duyệt. Không thiết kế inter-VDOM routing mở rộng tạo đường đi vòng giữa IT và OT.
+      </div>
+    </div>
+
+    <!-- PANEL: Rule & Policy -->
+    <div class="tab-panel" id="tab-rule">
+      <div class="sec-label">Rule & Security Policy</div>
+      <h2 class="sec-title">Rule Matrix giữa IT · IDMZ · OT</h2>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-title">📜 Nguyên tắc Rule</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+          <div class="deliverable-item"><span class="di-icon">🚫</span> Default deny giữa IT, IDMZ và OT</div>
+          <div class="deliverable-item"><span class="di-icon">🎯</span> Chỉ mở rule theo đúng app, port, protocol, source, destination</div>
+          <div class="deliverable-item"><span class="di-icon">👤</span> Rule phải có owner, mục đích, thời hạn (nếu là rule tạm)</div>
+          <div class="deliverable-item"><span class="di-icon">🚫</span> Không mở any-any giữa các vùng</div>
+          <div class="deliverable-item"><span class="di-icon">🌐</span> OT không được truy cập Internet trực tiếp</div>
+          <div class="deliverable-item"><span class="di-icon">🔐</span> Remote access phải qua VPN/MFA và jump server trong IDMZ</div>
+          <div class="deliverable-item"><span class="di-icon">📁</span> File đưa vào OT phải qua file gateway và malware scan/CDR</div>
+          <div class="deliverable-item"><span class="di-icon">📋</span> Log tất cả rule giữa IT - IDMZ - OT</div>
+        </div>
+      </div>
+
+      <div class="rule-row rule-header" style="margin-bottom:4px">
+        <span>Nguồn</span><span>Đích</span><span>Mục đích</span><span>Nguyên tắc</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">IT User/Admin</span>
+        <span class="rule-dst">Jump Server IDMZ</span>
+        <span class="rule-purpose">Quản trị có kiểm soát</span>
+        <span class="rule-policy">VPN/MFA, ghi log</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">Jump Server IDMZ</span>
+        <span class="rule-dst">OT Server / Eng. WS</span>
+        <span class="rule-purpose">Bảo trì được phê duyệt</span>
+        <span class="rule-policy">Chỉ IP/port cần thiết</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">IT Server</span>
+        <span class="rule-dst">File Transfer IDMZ</span>
+        <span class="rule-purpose">Đưa file vào vùng trung gian</span>
+        <span class="rule-policy">Có scan / phê duyệt</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">File Transfer IDMZ</span>
+        <span class="rule-dst">OT Server</span>
+        <span class="rule-purpose">Chuyển file sang OT</span>
+        <span class="rule-policy">Một chiều / phiên được duyệt</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">OT Historian</span>
+        <span class="rule-dst">Historian Mirror IDMZ</span>
+        <span class="rule-purpose">Đồng bộ dữ liệu sản xuất</span>
+        <span class="rule-policy">OT đẩy dữ liệu ra IDMZ</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">IT Reporting</span>
+        <span class="rule-dst">Historian Mirror IDMZ</span>
+        <span class="rule-purpose">Khai thác báo cáo</span>
+        <span class="rule-policy">Không truy cập trực tiếp OT</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">OT Device</span>
+        <span class="rule-dst rule-deny">Internet</span>
+        <span class="rule-purpose rule-deny">Không cho phép</span>
+        <span class="rule-deny">DENY</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-src">Vendor Remote</span>
+        <span class="rule-dst">Jump Server IDMZ</span>
+        <span class="rule-purpose">Bảo trì từ xa có phê duyệt</span>
+        <span class="rule-policy">VPN/MFA, lịch cụ thể, ghi log</span>
+      </div>
+    </div>
+
+    <!-- PANEL: Lộ trình -->
+    <div class="tab-panel" id="tab-loTrinh">
+      <div class="sec-label">Lộ trình triển khai</div>
+      <h2 class="sec-title">5 Giai đoạn thực hiện</h2>
+
+      <div class="dr-phase">
+        <div class="dr-num">1</div>
+        <div>
+          <div class="dr-title">🔍 Giai đoạn 1 — Khảo sát & Đánh giá</div>
+          <div class="dr-desc">Thu thập cấu hình firewall, core switch, access switch. Kiểm kê thiết bị, port, VLAN, IP, uplink. Đối chiếu với tiêu chuẩn IT-OT-IDMZ. Xác định thiết bị đạt/không đạt. Lập danh sách rủi ro và phụ thuộc vận hành. <strong style="color:var(--white)">Kết quả:</strong> Bảng inventory, bảng đánh giá đạt/không đạt, danh sách thiết bị cần nâng cấp/thay thế.</div>
+        </div>
+      </div>
+      <div class="dr-phase">
+        <div class="dr-num">2</div>
+        <div>
+          <div class="dr-title">📐 Giai đoạn 2 — Thiết kế chi tiết</div>
+          <div class="dr-desc">Chốt mô hình IT, OT, IDMZ và VLAN/IP plan. Chốt sơ đồ vật lý, logic. Chốt phương án firewall (firewall riêng hoặc Fortigate HA chia VDOM). Chốt danh sách server/dịch vụ trong IDMZ. Chốt rule matrix và security policy. Lập kế hoạch migrate uplink access switch.</div>
+        </div>
+      </div>
+      <div class="dr-phase">
+        <div class="dr-num">3</div>
+        <div>
+          <div class="dr-title">🔧 Giai đoạn 3 — Nâng cấp/Bổ sung thiết bị</div>
+          <div class="dr-desc">Bổ sung hoặc nâng cấp firewall. Bổ sung/nâng cấp core switch stack cho IT. Bổ sung/nâng cấp core switch stack cho OT nếu cần. Bổ sung switch cho IDMZ. Chuẩn bị license, firmware, module, cáp uplink và vật tư triển khai.</div>
+        </div>
+      </div>
+      <div class="dr-phase">
+        <div class="dr-num">4</div>
+        <div>
+          <div class="dr-title">⚙️ Giai đoạn 4 — Triển khai & Migration</div>
+          <div class="dr-desc">Cấu hình core, VLAN, routing. Cấu hình firewall/VDOM/zone. Cấu hình IDMZ server network. Chuyển uplink access switch theo kế hoạch. Tách IT access và OT access nếu khả thi. Áp dụng port security/MAC binding/logging. Kiểm thử từng luồng nghiệp vụ.</div>
+        </div>
+      </div>
+      <div class="dr-phase">
+        <div class="dr-num">5</div>
+        <div>
+          <div class="dr-title">✅ Giai đoạn 5 — Nghiệm thu & Vận hành</div>
+          <div class="dr-desc">Kiểm thử HA/failover. Kiểm thử rule IT-IDMZ-OT. Kiểm thử remote access, file transfer, patch/update, monitoring. Kiểm tra log và cảnh báo. Bàn giao sơ đồ, cấu hình, rule matrix, tài liệu vận hành. Thiết lập quy trình thay đổi firewall rule và kết nối mới.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: Deliverables -->
+    <div class="tab-panel" id="tab-output">
+      <div class="sec-label">Deliverables</div>
+      <h2 class="sec-title">Đầu ra sau giai đoạn thiết kế/triển khai</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📊 Tài liệu khảo sát & Thiết kế</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+            <div class="deliverable-item"><span class="di-icon">📋</span> Báo cáo khảo sát hiện trạng</div>
+            <div class="deliverable-item"><span class="di-icon">📋</span> Bảng inventory thiết bị mạng</div>
+            <div class="deliverable-item"><span class="di-icon">✅</span> Bảng đánh giá thiết bị đạt/không đạt theo tiêu chuẩn</div>
+            <div class="deliverable-item"><span class="di-icon">📋</span> Danh sách thiết bị cần nâng cấp/thay thế/bổ sung</div>
+            <div class="deliverable-item"><span class="di-icon">🗺</span> Sơ đồ vật lý & logic IT-IDMZ-OT</div>
+            <div class="deliverable-item"><span class="di-icon">🌐</span> VLAN/IP plan</div>
+            <div class="deliverable-item"><span class="di-icon">🔌</span> Port mapping từng switch access</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛡 Tài liệu bảo mật & Vận hành</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+            <div class="deliverable-item"><span class="di-icon">⬆️</span> Uplink migration plan</div>
+            <div class="deliverable-item"><span class="di-icon">🛡</span> Firewall zone/VDOM design</div>
+            <div class="deliverable-item"><span class="di-icon">📜</span> Firewall rule matrix</div>
+            <div class="deliverable-item"><span class="di-icon">🖥</span> Danh sách server/dịch vụ trong IDMZ</div>
+            <div class="deliverable-item"><span class="di-icon">📋</span> Kế hoạch triển khai & rollback</div>
+            <div class="deliverable-item"><span class="di-icon">✅</span> Biên bản kiểm thử/nghiệm thu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+    <img class="lb-img" id="lb-img"/>
+    <div class="lb-caption" id="lb-cap"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">🛡</div>
+    <div class="footer-info"><strong>NetNam × Panasonic</strong> — Giải pháp phân vùng mạng IT · OT · IDMZ cho hệ thống nhà máy</div>
+  </div>
+  <div class="footer-right">NetNam Corporation · v1.0 — 2026</div>
+</footer>
+
+<script>
+  addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>30));
+  function sw(id,btn){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.side-tab').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function openLb(src,cap){
+    const lb=document.getElementById('lb');
+    document.getElementById('lb-img').src=src;
+    document.getElementById('lb-cap').textContent=cap;
+    lb.classList.add('open');
+  }
+</script>
+</body>
+</html>

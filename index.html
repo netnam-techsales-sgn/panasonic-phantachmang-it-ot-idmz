@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NetNam × Panasonic — Phân vùng IT · OT · IDMZ</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 40px 80px;overflow:hidden;z-index:1}
+.hero::after{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(0,191,165,.12) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:24px;animation:fadeUp .6s ease both}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:40px;height:1px;background:var(--teal);opacity:.5}
+.hero-title{font-size:clamp(36px,5vw,62px);font-weight:900;text-align:center;line-height:1.12;letter-spacing:-1px;color:var(--white);margin-bottom:12px;animation:fadeUp .6s .1s ease both}
+.hero-title .highlight{background:linear-gradient(90deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--g2);text-align:center;max-width:620px;line-height:1.7;margin-bottom:40px;animation:fadeUp .6s .2s ease both}
+.hero-stats{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;animation:fadeUp .6s .3s ease both}
+.stat-chip{display:flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--border);border-radius:50px;padding:9px 18px;font-size:13px;color:var(--g1);backdrop-filter:blur(8px);transition:all var(--tr)}
+.stat-chip:hover{border-color:var(--teal);color:var(--teal);box-shadow:var(--glow);transform:translateY(-2px)}
+.stat-chip .chip-icon{font-size:16px;flex-shrink:0}
+.stat-chip strong{color:var(--white);font-weight:700;white-space:nowrap}
+
+.section{position:relative;z-index:1;padding:80px 40px;max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:56px}
+.section .section-title{font-size:clamp(26px,3vw,38px)}
+.section .section-desc{margin-left:auto;margin-right:auto;text-align:center}
+.scope-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.scope-item{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;text-align:center;transition:all var(--tr)}
+.scope-item:hover{border-color:rgba(0,191,165,.25);transform:translateY(-3px)}
+.scope-big{font-size:36px;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.scope-label{font-size:12px;color:var(--g2);line-height:1.5}
+
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.overview-card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;transition:all var(--tr)}
+.overview-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--blue));opacity:0;transition:opacity var(--tr)}
+.overview-card:hover{border-color:rgba(0,191,165,.3);transform:translateY(-4px);box-shadow:var(--shadow)}
+.overview-card:hover::before{opacity:1}
+.ov-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.ov-icon.blue{background:rgba(59,130,246,.15)}.ov-icon.teal{background:rgba(0,191,165,.15)}.ov-icon.purple{background:rgba(124,58,237,.15)}.ov-icon.orange{background:rgba(245,158,11,.15)}.ov-icon.red{background:rgba(239,68,68,.15)}.ov-icon.green{background:rgba(34,197,94,.15)}
+.ov-title{font-size:13px;font-weight:600;color:var(--g2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.ov-value{font-size:28px;font-weight:800;color:var(--white);line-height:1;margin-bottom:6px}
+.ov-detail{font-size:13px;color:var(--g2);line-height:1.5}
+
+.timeline{position:relative;padding:20px 0}
+.timeline-line{position:absolute;top:72px;left:80px;right:80px;height:2px;background:linear-gradient(90deg,var(--teal),var(--blue),var(--purple));opacity:.3}
+.timeline-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
+.tl-step{display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+.tl-step.visible{opacity:1;transform:translateY(0)}
+.tl-dot-wrap{position:relative;margin-bottom:16px}
+.tl-dot{width:48px;height:48px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--navy-card);position:relative;z-index:1;transition:all var(--tr)}
+.tl-step:hover .tl-dot{transform:scale(1.15);box-shadow:0 0 0 8px rgba(0,191,165,.1)}
+.tl-num{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--navy);border:1.5px solid;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.tl-phase{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.tl-name{font-size:13px;font-weight:700;color:var(--white);line-height:1.35;margin-bottom:8px}
+.tl-desc{font-size:11.5px;color:var(--g2);line-height:1.55}
+.tl-step:nth-child(1) .tl-dot,.tl-step:nth-child(1) .tl-num{border-color:#3B82F6}.tl-step:nth-child(1) .tl-num,.tl-step:nth-child(1) .tl-phase{color:#3B82F6}
+.tl-step:nth-child(2) .tl-dot,.tl-step:nth-child(2) .tl-num{border-color:#00BFA5}.tl-step:nth-child(2) .tl-num,.tl-step:nth-child(2) .tl-phase{color:#00BFA5}
+.tl-step:nth-child(3) .tl-dot,.tl-step:nth-child(3) .tl-num{border-color:#7C3AED}.tl-step:nth-child(3) .tl-num,.tl-step:nth-child(3) .tl-phase{color:#7C3AED}
+.tl-step:nth-child(4) .tl-dot,.tl-step:nth-child(4) .tl-num{border-color:#F59E0B}.tl-step:nth-child(4) .tl-num,.tl-step:nth-child(4) .tl-phase{color:#F59E0B}
+.tl-step:nth-child(5) .tl-dot,.tl-step:nth-child(5) .tl-num{border-color:#22C55E}.tl-step:nth-child(5) .tl-num,.tl-step:nth-child(5) .tl-phase{color:#22C55E}
+
+.nav-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.nav-card{position:relative;background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 32px;display:flex;flex-direction:column;gap:16px;overflow:hidden;transition:all var(--tr);cursor:pointer;text-decoration:none;color:inherit}
+.nav-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity var(--tr);border-radius:var(--radius-lg)}
+.nav-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.nav-card.c1::before{background:radial-gradient(circle at 0% 0%,rgba(59,130,246,.12),transparent 60%)}.nav-card.c2::before{background:radial-gradient(circle at 100% 0%,rgba(0,191,165,.12),transparent 60%)}.nav-card.c3::before{background:radial-gradient(circle at 0% 100%,rgba(124,58,237,.12),transparent 60%)}
+.nav-card.c1:hover{border-color:rgba(59,130,246,.35)}.nav-card.c2:hover{border-color:rgba(0,191,165,.35)}.nav-card.c3:hover{border-color:rgba(124,58,237,.35)}
+.nav-card:hover::before{opacity:1}
+.nc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.nc-icon-wrap{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.c1 .nc-icon-wrap{background:rgba(59,130,246,.15)}.c2 .nc-icon-wrap{background:rgba(0,191,165,.15)}.c3 .nc-icon-wrap{background:rgba(124,58,237,.15)}
+.nc-arrow{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--g3);transition:all var(--tr);flex-shrink:0}
+.nav-card:hover .nc-arrow{border-color:currentColor;transform:translate(3px,-3px)}
+.c1 .nc-arrow{color:#3B82F6}.c2 .nc-arrow{color:#00BFA5}.c3 .nc-arrow{color:#7C3AED}
+.nc-num{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.5}
+.nc-title{font-size:21px;font-weight:800;color:var(--white);line-height:1.25}
+.nc-desc{font-size:13.5px;color:var(--g2);line-height:1.65}
+.nc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.nc-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:5px;border:1px solid var(--border);background:var(--glass);color:var(--g2)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.float-dot{position:absolute;border-radius:50%;pointer-events:none}
+.fd1{width:300px;height:300px;background:radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%);top:-60px;right:-60px}
+.fd2{width:200px;height:200px;background:radial-gradient(circle,rgba(124,58,237,.07) 0%,transparent 70%);bottom:40px;left:-40px}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .section{padding:60px 20px}.overview-grid{grid-template-columns:1fr 1fr}
+  .timeline-steps{grid-template-columns:repeat(3,1fr)}.timeline-line{display:none}
+  .nav-cards{grid-template-columns:1fr}.scope-grid{grid-template-columns:repeat(2,1fr)}
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">🛡</div>
+    <div>
+      <div class="nav-title">NetNam × Panasonic</div>
+      <div class="nav-subtitle">Phân vùng IT · OT · IDMZ</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Tổng quan</a></li>
+    <li><a href="hien-trang.html"><span class="nav-icon">🖥</span> Hiện trạng</a></li>
+    <li><a href="phuong-an.html"><span class="nav-icon">🔀</span> Phương án</a></li>
+    <li><a href="tieu-chuan.html"><span class="nav-icon">📋</span> Tiêu chuẩn KT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="float-dot fd1"></div>
+  <div class="float-dot fd2"></div>
+  <div class="hero-eyebrow">Tài liệu Kỹ thuật · Technical Proposal</div>
+  <h1 class="hero-title">Phân tách mạng<br><span class="highlight">IT · OT · IDMZ</span></h1>
+  <p class="hero-sub">Giải pháp phân vùng bảo mật theo mô hình Purdue / ISA-IEC 62443 — tách rõ mạng văn phòng, mạng sản xuất và vùng trung gian IDMZ cho hệ thống nhà máy Panasonic.</p>
+  <div class="hero-stats">
+    <div class="stat-chip"><span class="chip-icon">🏭</span> <strong>2</strong> Nhà máy</div>
+    <div class="stat-chip"><span class="chip-icon">🔒</span> <strong>3</strong> Vùng mạng</div>
+    <div class="stat-chip"><span class="chip-icon">🛡</span> <strong>Fortigate</strong> HA + VDOM</div>
+    <div class="stat-chip"><span class="chip-icon">🚀</span> <strong>5</strong> Giai đoạn triển khai</div>
+  </div>
+</section>
+
+<!-- SCOPE NUMBERS -->
+<div id="overview" style="position:relative;z-index:1;background:rgba(0,0,0,.2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div style="max-width:1200px;margin:0 auto;padding:36px 40px">
+    <div class="scope-grid reveal">
+      <div class="scope-item"><div class="scope-big">2</div><div class="scope-label">Nhà máy<br>Nhà máy 1 & Nhà máy 2</div></div>
+      <div class="scope-item"><div class="scope-big">3</div><div class="scope-label">Vùng mạng<br>IT · IDMZ · OT</div></div>
+      <div class="scope-item"><div class="scope-big">6</div><div class="scope-label">Thành phần IDMZ<br>Jump, File, Patch, Log, Scan, Historian</div></div>
+      <div class="scope-item"><div class="scope-big">5</div><div class="scope-label">Giai đoạn<br>Khảo sát → Nghiệm thu</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW CARDS -->
+<div class="section reveal">
+  <div class="section-header">
+    <div class="section-label">Nội dung chính</div>
+    <h2 class="section-title">Ba phần của Technical Proposal</h2>
+    <p class="section-desc" style="max-width:560px">Tài liệu được tổ chức thành ba phần: đánh giá hiện trạng, phương án đề xuất và tiêu chuẩn kỹ thuật áp dụng.</p>
+  </div>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="ov-icon blue">🖥</div>
+      <div class="ov-title">Hiện trạng</div>
+      <div class="ov-value">5 tồn tại</div>
+      <div class="ov-detail">Đánh giá mô hình mạng hiện hữu: thiếu IDMZ, lớp core đơn lẻ, dùng chung access switch IT/OT, rủi ro truy cập trực tiếp.</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-icon teal">🔀</div>
+      <div class="ov-title">Phương án đề xuất</div>
+      <div class="ov-value">5 giai đoạn</div>
+      <div class="ov-detail">Tách rõ IT · IDMZ · OT, triển khai Fortigate HA chia VDOM, bổ sung core switch stack, server IDMZ ảo hóa.</div>
+    </div>
+    <div class="overview-card">
+      <div class="ov-icon purple">📋</div>
+      <div class="ov-title">Tiêu chuẩn KT</div>
+      <div class="ov-value">Purdue + ISA 62443</div>
+      <div class="ov-detail">Mô hình Purdue Level 0–5, ISA/IEC 62443 zones & conduits, CPwE IDMZ — cơ sở thiết kế firewall rule và kiểm soát truy cập.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE 5 GIAI ĐOẠN -->
+<div style="background:rgba(0,0,0,.15);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1">
+  <div class="section reveal">
+    <div class="section-header">
+      <div class="section-label">Lộ trình triển khai</div>
+      <h2 class="section-title">5 Giai đoạn thực hiện</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-steps">
+        <div class="tl-step">
+          <div class="tl-dot-wrap"><div class="tl-dot">🔍</div><div class="tl-num">1</div></div>
+          <div class="tl-phase">Phase 1</div>
+          <div class="tl-name">Khảo sát & Đánh giá</div>
+          <div class="tl-desc">Thu thập cấu hình, kiểm kê thiết bị, đối chiếu tiêu chuẩn IT-OT-IDMZ</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot-wrap"><div class="tl-dot">📐</div><div class="tl-num">2</div></div>
+          <div class="tl-phase">Phase 2</div>
+          <div class="tl-name">Thiết kế chi tiết</div>
+          <div class="tl-desc">Chốt VLAN/IP plan, sơ đồ vật lý & logic, phương án firewall, rule matrix</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot-wrap"><div class="tl-dot">🔧</div><div class="tl-num">3</div></div>
+          <div class="tl-phase">Phase 3</div>
+          <div class="tl-name">Nâng cấp thiết bị</div>
+          <div class="tl-desc">Bổ sung/nâng cấp firewall, core switch stack IT/OT, switch IDMZ</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot-wrap"><div class="tl-dot">⚙️</div><div class="tl-num">4</div></div>
+          <div class="tl-phase">Phase 4</div>
+          <div class="tl-name">Triển khai & Migration</div>
+          <div class="tl-desc">Cấu hình VLAN, VDOM, IDMZ, chuyển uplink access switch, port security</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot-wrap"><div class="tl-dot">✅</div><div class="tl-num">5</div></div>
+          <div class="tl-phase">Phase 5</div>
+          <div class="tl-name">Nghiệm thu & Vận hành</div>
+          <div class="tl-desc">Kiểm thử HA/failover, rule IT-IDMZ-OT, bàn giao tài liệu & quy trình</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV CARDS -->
+<div class="section reveal">
+  <div class="section-header">
+    <div class="section-label">Điều hướng</div>
+    <h2 class="section-title">Các phần tài liệu</h2>
+  </div>
+  <div class="nav-cards">
+    <a href="hien-trang.html" class="nav-card c1">
+      <div class="nc-top"><div class="nc-icon-wrap">🖥</div><div class="nc-arrow">→</div></div>
+      <div class="nc-num">01 — Hiện trạng</div>
+      <div class="nc-title">Hiện trạng & Rủi ro</div>
+      <div class="nc-desc">Mô hình mạng hiện hữu tại 2 nhà máy, các khó khăn tồn tại và rủi ro nếu giữ nguyên hiện trạng.</div>
+      <div class="nc-tags">
+        <span class="nc-tag">Mô hình hiện trạng</span>
+        <span class="nc-tag">5 khó khăn</span>
+        <span class="nc-tag">5 rủi ro</span>
+      </div>
+    </a>
+    <a href="phuong-an.html" class="nav-card c2">
+      <div class="nc-top"><div class="nc-icon-wrap">🔀</div><div class="nc-arrow">→</div></div>
+      <div class="nc-num">02 — Phương án</div>
+      <div class="nc-title">Phương án Kỹ thuật Đề xuất</div>
+      <div class="nc-desc">Thiết kế IT · IDMZ · OT, nguyên tắc triển khai, phương án firewall (riêng / VDOM), rule matrix và lộ trình 5 giai đoạn.</div>
+      <div class="nc-tags">
+        <span class="nc-tag">Fortigate HA + VDOM</span>
+        <span class="nc-tag">IDMZ Servers</span>
+        <span class="nc-tag">Lộ trình</span>
+      </div>
+    </a>
+    <a href="tieu-chuan.html" class="nav-card c3">
+      <div class="nc-top"><div class="nc-icon-wrap">📋</div><div class="nc-arrow">→</div></div>
+      <div class="nc-num">03 — Tiêu chuẩn KT</div>
+      <div class="nc-title">Tiêu chuẩn Kỹ thuật Áp dụng</div>
+      <div class="nc-desc">Purdue Model Level 0-5, ISA/IEC 62443 zones & conduits, nguyên tắc kết nối IT/IDMZ/OT và bảng so sánh chi tiết.</div>
+      <div class="nc-tags">
+        <span class="nc-tag">Purdue Model</span>
+        <span class="nc-tag">ISA/IEC 62443</span>
+        <span class="nc-tag">CPwE</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">🛡</div>
+    <div class="footer-info"><strong>NetNam × Panasonic</strong> — Giải pháp phân vùng mạng IT · OT · IDMZ cho hệ thống nhà máy</div>
+  </div>
+  <div class="footer-right">NetNam Corporation · v1.0 — 2026</div>
+</footer>
+
+<script>
+  const navbar=document.getElementById('navbar');
+  addEventListener('scroll',()=>navbar.classList.toggle('scrolled',scrollY>30));
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  const to=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.tl-step').forEach((s,i)=>setTimeout(()=>s.classList.add('visible'),i*110));to.unobserve(e.target)}}),{threshold:.1});
+  const tw=document.querySelector('.timeline-steps');if(tw)to.observe(tw);
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A1628"/>
+      <stop offset="1" stop-color="#101f35"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <style>
+      .title{fill:#fff;font-size:30px;font-weight:800}
+      .sub{fill:#94A3B8;font-size:15px}
+      .zoneTitle{fill:#E2E8F0;font-size:18px;font-weight:800}
+      .nodeTitle{fill:#fff;font-size:16px;font-weight:800}
+      .nodeSub{fill:#CBD5E1;font-size:12px}
+      .small{fill:#94A3B8;font-size:12px}
+      .warn{fill:#F59E0B;font-size:13px;font-weight:700}
+      .link{stroke:#64748B;stroke-width:3;fill:none}
+      .fiber{stroke:#00BFA5;stroke-width:5;fill:none;stroke-dasharray:10 8}
+      .fw{fill:#7f1d1d;stroke:#EF4444;stroke-width:2}
+      .core{fill:#123d6f;stroke:#3B82F6;stroke-width:2}
+      .access{fill:#064e45;stroke:#00BFA5;stroke-width:2}
+      .ot{fill:#3b246b;stroke:#7C3AED;stroke-width:2}
+      .wan{fill:#1f2937;stroke:#94A3B8;stroke-width:2}
+      .note{fill:#271a08;stroke:#F59E0B;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <text x="58" y="62" class="title">PANASONIC - Mô hình mạng hiện trạng</text>
+  <text x="58" y="90" class="sub">Hai nhà máy kết nối qua fiber; Fortigate/Cisco 350 đang đảm nhiệm các vai trò gateway, core/distribution và tách OT sơ bộ.</text>
+
+  <rect x="54" y="124" width="1492" height="112" rx="20" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="78" y="158" class="zoneTitle">Internet / WAN</text>
+  <rect x="210" y="164" width="190" height="46" rx="12" class="wan" filter="url(#shadow)"/>
+  <text x="305" y="193" text-anchor="middle" class="nodeTitle">VNPT Internet 1</text>
+  <rect x="438" y="164" width="190" height="46" rx="12" class="wan" filter="url(#shadow)"/>
+  <text x="533" y="193" text-anchor="middle" class="nodeTitle">VNPT Internet 2</text>
+  <rect x="666" y="164" width="230" height="46" rx="12" class="wan" filter="url(#shadow)"/>
+  <text x="781" y="193" text-anchor="middle" class="nodeTitle">SD-WAN / Internet</text>
+
+  <rect x="54" y="274" width="712" height="570" rx="22" fill="#0d1b2f" stroke="#334155" stroke-width="1.5"/>
+  <text x="78" y="312" class="zoneTitle">Nhà máy 1</text>
+  <rect x="258" y="320" width="260" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="388" y="348" text-anchor="middle" class="nodeTitle">02x Fortigate HA</text>
+  <text x="388" y="370" text-anchor="middle" class="nodeSub">Internet / SD-WAN / WAN Edge</text>
+  <rect x="258" y="438" width="260" height="70" rx="14" class="core" filter="url(#shadow)"/>
+  <text x="388" y="466" text-anchor="middle" class="nodeTitle">Cisco 350</text>
+  <text x="388" y="488" text-anchor="middle" class="nodeSub">Core / Distribution</text>
+  <rect x="92" y="438" width="140" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="162" y="466" text-anchor="middle" class="nodeTitle">Fortigate</text>
+  <text x="162" y="488" text-anchor="middle" class="nodeSub">Gateway + DHCP</text>
+  <rect x="570" y="438" width="140" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="640" y="466" text-anchor="middle" class="nodeTitle">Fortigate</text>
+  <text x="640" y="488" text-anchor="middle" class="nodeSub">OT Firewall</text>
+  <rect x="118" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="186" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="320" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="388" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="522" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="590" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="118" y="690" width="170" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="203" y="724" text-anchor="middle" class="nodeTitle">PC / Printer / AP</text>
+  <rect x="348" y="690" width="170" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="433" y="724" text-anchor="middle" class="nodeTitle">PC / AP</text>
+  <rect x="566" y="690" width="126" height="58" rx="12" class="ot"/><text x="629" y="724" text-anchor="middle" class="nodeTitle">OT Network</text>
+
+  <rect x="834" y="274" width="712" height="570" rx="22" fill="#0d1b2f" stroke="#334155" stroke-width="1.5"/>
+  <text x="858" y="312" class="zoneTitle">Nhà máy 2</text>
+  <rect x="1060" y="438" width="260" height="70" rx="14" class="core" filter="url(#shadow)"/>
+  <text x="1190" y="466" text-anchor="middle" class="nodeTitle">Cisco 350</text>
+  <text x="1190" y="488" text-anchor="middle" class="nodeSub">Core / Distribution</text>
+  <rect x="1380" y="438" width="120" height="70" rx="14" class="fw" filter="url(#shadow)"/>
+  <text x="1440" y="466" text-anchor="middle" class="nodeTitle">Fortigate</text>
+  <text x="1440" y="488" text-anchor="middle" class="nodeSub">OT FW</text>
+  <rect x="922" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="990" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="1122" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="1190" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="1322" y="570" width="136" height="58" rx="12" class="access" filter="url(#shadow)"/><text x="1390" y="604" text-anchor="middle" class="nodeTitle">Access SW</text>
+  <rect x="922" y="690" width="160" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="1002" y="724" text-anchor="middle" class="nodeTitle">PC / AP</text>
+  <rect x="1134" y="690" width="160" height="58" rx="12" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/><text x="1214" y="724" text-anchor="middle" class="nodeTitle">Server Mgmt</text>
+  <rect x="1377" y="690" width="126" height="58" rx="12" class="ot"/><text x="1440" y="724" text-anchor="middle" class="nodeTitle">OT Network</text>
+
+  <path d="M305 210 L388 320" class="link"/><path d="M533 210 L388 320" class="link"/><path d="M781 210 L388 320" class="link"/>
+  <path d="M388 390 L388 438" class="link"/><path d="M232 473 L258 473" class="link"/><path d="M518 473 L570 473" class="link"/>
+  <path d="M388 508 L388 548 L186 548 L186 570" class="link"/><path d="M388 508 L388 570" class="link"/><path d="M388 548 L590 548 L590 570" class="link"/>
+  <path d="M186 628 L203 690" class="link"/><path d="M388 628 L433 690" class="link"/><path d="M640 508 L629 690" class="link"/>
+  <path d="M518 473 C690 410 890 410 1060 473" class="fiber"/>
+  <text x="790" y="432" text-anchor="middle" class="small">Fiber cable giữa 2 Cisco 350</text>
+  <path d="M1190 508 L1190 548 L990 548 L990 570" class="link"/><path d="M1190 508 L1190 570" class="link"/><path d="M1190 548 L1390 548 L1390 570" class="link"/>
+  <path d="M990 628 L1002 690" class="link"/><path d="M1190 628 L1214 690" class="link"/><path d="M1320 473 L1380 473" class="link"/><path d="M1440 508 L1440 690" class="link"/>
+
+  <rect x="64" y="872" width="1472" height="66" rx="16" class="note"/>
+  <text x="90" y="900" class="warn">Ghi chú hiện trạng:</text>
+  <text x="230" y="900" class="sub">Đã có dấu hiệu tách OT qua firewall, nhưng chưa thể hiện rõ IDMZ và các server trung gian cho luồng trao đổi IT/OT.</text>
+  <text x="230" y="923" class="sub">Cần kiểm tra lại VLAN, routing, gateway, firewall rule, logging, năng lực HA và khả năng tách access IT/OT.</text>
+</svg>

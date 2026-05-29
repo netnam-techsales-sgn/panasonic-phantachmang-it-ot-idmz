@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A1628"/>
+      <stop offset="1" stop-color="#0e2438"/>
+    </linearGradient>
+    <filter id="shadow2" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <style>
+      .title{fill:#fff;font-size:30px;font-weight:800}
+      .sub{fill:#94A3B8;font-size:15px}
+      .zoneTitle{fill:#E2E8F0;font-size:19px;font-weight:800}
+      .nodeTitle{fill:#fff;font-size:16px;font-weight:800}
+      .nodeSub{fill:#CBD5E1;font-size:12px}
+      .small{fill:#94A3B8;font-size:12px}
+      .link{stroke:#64748B;stroke-width:3;fill:none}
+      .secure{stroke:#00BFA5;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .deny{stroke:#EF4444;stroke-width:3;stroke-dasharray:9 7;fill:none}
+      .edge{fill:#7f1d1d;stroke:#EF4444;stroke-width:2}
+      .it{fill:#123d6f;stroke:#3B82F6;stroke-width:2}
+      .idmz{fill:#064e45;stroke:#00BFA5;stroke-width:2}
+      .ot{fill:#3b246b;stroke:#7C3AED;stroke-width:2}
+      .note{fill:#071f1c;stroke:#00BFA5;stroke-width:1.5}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#00BFA5"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1050" fill="url(#bg2)"/>
+  <text x="58" y="62" class="title">PANASONIC - Mô hình đề xuất nâng cấp IT - IDMZ - OT</text>
+  <text x="58" y="90" class="sub">Mô hình mục tiêu tách rõ vùng IT, IDMZ và OT; mọi luồng IT/OT đi qua IDMZ và firewall rule được phê duyệt.</text>
+
+  <rect x="70" y="140" width="1460" height="95" rx="22" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+  <rect x="170" y="163" width="250" height="50" rx="14" class="edge" filter="url(#shadow2)"/>
+  <text x="295" y="193" text-anchor="middle" class="nodeTitle">Internet / SD-WAN / WAN</text>
+  <rect x="545" y="156" width="310" height="64" rx="16" class="edge" filter="url(#shadow2)"/>
+  <text x="700" y="184" text-anchor="middle" class="nodeTitle">02x Fortigate HA</text>
+  <text x="700" y="205" text-anchor="middle" class="nodeSub">VDOM-WAN / VDOM-Edge</text>
+  <rect x="1000" y="163" width="290" height="50" rx="14" fill="#172554" stroke="#60A5FA" stroke-width="1.5" filter="url(#shadow2)"/>
+  <text x="1145" y="193" text-anchor="middle" class="nodeTitle">VPN / MFA / Remote Access</text>
+  <path d="M420 188 L545 188" class="secure"/><path d="M855 188 L1000 188" class="secure"/>
+
+  <rect x="70" y="290" width="405" height="520" rx="24" fill="#0d1b2f" stroke="#3B82F6" stroke-width="2"/>
+  <text x="98" y="330" class="zoneTitle">IT Zone</text>
+  <rect x="132" y="365" width="280" height="70" rx="14" class="it" filter="url(#shadow2)"/>
+  <text x="272" y="393" text-anchor="middle" class="nodeTitle">Firewall / VDOM-IT</text>
+  <text x="272" y="415" text-anchor="middle" class="nodeSub">Gateway / policy cho mạng IT</text>
+  <rect x="132" y="488" width="280" height="70" rx="14" class="it" filter="url(#shadow2)"/>
+  <text x="272" y="516" text-anchor="middle" class="nodeTitle">IT Core Switch Stack</text>
+  <text x="272" y="538" text-anchor="middle" class="nodeSub">HA / VLAN / routing theo thiết kế</text>
+  <rect x="132" y="608" width="280" height="62" rx="14" class="it" filter="url(#shadow2)"/>
+  <text x="272" y="646" text-anchor="middle" class="nodeTitle">IT Access Switches</text>
+  <rect x="132" y="713" width="280" height="62" rx="14" fill="#172554" stroke="#60A5FA" stroke-width="1.5"/>
+  <text x="272" y="750" text-anchor="middle" class="nodeTitle">PC / Printer / AP / Server</text>
+  <path d="M272 435 L272 488" class="link"/><path d="M272 558 L272 608" class="link"/><path d="M272 670 L272 713" class="link"/>
+
+  <rect x="560" y="290" width="480" height="520" rx="24" fill="#08231f" stroke="#00BFA5" stroke-width="2"/>
+  <text x="588" y="330" class="zoneTitle">IDMZ Zone</text>
+  <rect x="640" y="365" width="320" height="70" rx="14" class="idmz" filter="url(#shadow2)"/>
+  <text x="800" y="393" text-anchor="middle" class="nodeTitle">Firewall / VDOM-IDMZ</text>
+  <text x="800" y="415" text-anchor="middle" class="nodeSub">Điểm kiểm soát trung gian IT/OT</text>
+  <rect x="610" y="486" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="692" y="520" text-anchor="middle" class="nodeTitle">Jump Server</text>
+  <rect x="825" y="486" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="908" y="520" text-anchor="middle" class="nodeTitle">File Gateway</text>
+  <rect x="610" y="582" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="692" y="616" text-anchor="middle" class="nodeTitle">Patch / AV Repo</text>
+  <rect x="825" y="582" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="908" y="616" text-anchor="middle" class="nodeTitle">Historian Mirror</text>
+  <rect x="610" y="678" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="692" y="712" text-anchor="middle" class="nodeTitle">Malware Scan</text>
+  <rect x="825" y="678" width="165" height="58" rx="12" class="idmz" filter="url(#shadow2)"/>
+  <text x="908" y="712" text-anchor="middle" class="nodeTitle">Syslog / Monitor</text>
+  <path d="M800 435 L800 466 L692 466 L692 486" class="link"/><path d="M800 466 L908 466 L908 486" class="link"/>
+  <path d="M692 544 L692 582" class="link"/><path d="M908 544 L908 582" class="link"/><path d="M692 640 L692 678" class="link"/><path d="M908 640 L908 678" class="link"/>
+
+  <rect x="1125" y="290" width="405" height="520" rx="24" fill="#1f1538" stroke="#7C3AED" stroke-width="2"/>
+  <text x="1153" y="330" class="zoneTitle">OT Zone</text>
+  <rect x="1187" y="365" width="280" height="70" rx="14" class="ot" filter="url(#shadow2)"/>
+  <text x="1327" y="393" text-anchor="middle" class="nodeTitle">Firewall / VDOM-OT</text>
+  <text x="1327" y="415" text-anchor="middle" class="nodeSub">Policy vào vùng sản xuất</text>
+  <rect x="1187" y="488" width="280" height="70" rx="14" class="ot" filter="url(#shadow2)"/>
+  <text x="1327" y="516" text-anchor="middle" class="nodeTitle">OT Core Switch Stack</text>
+  <text x="1327" y="538" text-anchor="middle" class="nodeSub">Tách độc lập nếu khả thi</text>
+  <rect x="1187" y="608" width="280" height="62" rx="14" class="ot" filter="url(#shadow2)"/>
+  <text x="1327" y="646" text-anchor="middle" class="nodeTitle">OT Access Switches</text>
+  <rect x="1187" y="713" width="280" height="62" rx="14" fill="#3b246b" stroke="#A78BFA" stroke-width="1.5"/>
+  <text x="1327" y="750" text-anchor="middle" class="nodeTitle">PLC / HMI / SCADA / Line</text>
+  <path d="M1327 435 L1327 488" class="link"/><path d="M1327 558 L1327 608" class="link"/><path d="M1327 670 L1327 713" class="link"/>
+
+  <path d="M700 220 C700 260 272 260 272 365" class="secure"/>
+  <path d="M412 400 L640 400" class="secure"/>
+  <path d="M960 400 L1187 400" class="secure"/>
+  <path d="M412 640 C520 640 520 250 1187 640" class="deny"/>
+  <text x="800" y="258" text-anchor="middle" class="small">Luồng hợp lệ: IT / VPN / OT đi qua IDMZ và firewall rule đã phê duyệt</text>
+  <text x="800" y="280" text-anchor="middle" fill="#F87171" font-size="13" font-weight="800">Không cho phép kết nối trực tiếp IT ↔ OT</text>
+
+  <rect x="70" y="858" width="1460" height="126" rx="18" class="note"/>
+  <text x="100" y="894" fill="#00E5C8" font-size="16" font-weight="800">Nguyên tắc đề xuất</text>
+  <text x="100" y="925" class="sub">1. Default deny giữa IT, IDMZ và OT; chỉ mở source/destination/port/protocol theo luồng nghiệp vụ đã được phê duyệt.</text>
+  <text x="100" y="950" class="sub">2. Remote access qua VPN/MFA và jump server trong IDMZ; file đưa vào OT qua file gateway và malware scan/CDR nếu áp dụng.</text>
+  <text x="100" y="975" class="sub">3. Lớp core/firewall cần HA; access IT/OT nên tách riêng nếu khả thi; thiết bị hiện hữu chỉ tận dụng khi đáp ứng tiêu chuẩn kỹ thuật.</text>
+</svg>

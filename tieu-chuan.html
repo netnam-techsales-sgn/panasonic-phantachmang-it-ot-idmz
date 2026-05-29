@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tiêu chuẩn KT — NetNam × Panasonic</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+/* PILL màu theo từng nhóm */
+.pill[data-svc="cosokt"].active   {background:rgba(59,130,246,.18);color:#60A5FA}
+.pill[data-svc="purdue"].active   {background:rgba(0,191,165,.18);color:var(--teal)}
+.pill[data-svc="it"].active       {background:rgba(59,130,246,.18);color:#60A5FA}
+.pill[data-svc="idmz"].active     {background:rgba(124,58,237,.18);color:#A78BFA}
+.pill[data-svc="ot"].active       {background:rgba(245,158,11,.18);color:var(--orange)}
+.pill[data-svc="ketnoi"].active   {background:rgba(0,191,165,.18);color:var(--teal)}
+.pill[data-svc="sosanh"].active   {background:rgba(6,182,212,.18);color:var(--cyan)}
+.pill[data-svc="trachnhiem"].active{background:rgba(34,197,94,.18);color:var(--green)}
+
+.svc-hero{display:flex;align-items:flex-start;gap:20px;padding:24px 28px;border-radius:14px;margin-bottom:20px;border:1px solid var(--border)}
+.svc-icon-big{font-size:40px;flex-shrink:0;line-height:1}
+.svc-name{font-size:22px;font-weight:900;color:var(--white);margin-bottom:6px}
+.svc-desc{font-size:13.5px;color:var(--g2);line-height:1.7}
+
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.spec-block{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.spec-block-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+ul.spec-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.spec-list li{display:flex;align-items:baseline;gap:10px;font-size:13px;color:var(--g1);line-height:1.55;padding-bottom:9px;border-bottom:1px solid var(--border);word-break:break-word}
+ul.spec-list li:last-child{border-bottom:none;padding-bottom:0}
+ul.spec-list li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;min-width:5px;background:var(--teal)}
+
+.req-block{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--r);padding:22px;border-left:3px solid}
+.req-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+ul.req-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+ul.req-list li{display:flex;align-items:baseline;gap:10px;font-size:13px;color:var(--g1);line-height:1.6;word-break:break-word}
+ul.req-list li::before{content:'→';font-weight:700;font-size:12px;flex-shrink:0;min-width:12px}
+
+.purdue-level{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-radius:10px;border:1px solid var(--border);margin-bottom:10px;transition:all var(--tr)}
+.purdue-level:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.level-badge{flex-shrink:0;width:80px;text-align:center;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 0;border-radius:6px}
+.level-info{flex:1}
+.level-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.level-func{font-size:12.5px;color:var(--g2);line-height:1.5;margin-bottom:6px}
+.level-examples{font-size:11.5px;color:var(--g3)}
+
+.conn-principle{display:grid;grid-template-columns:1fr 1fr 2fr;gap:0;padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;align-items:center}
+.conn-principle:last-child{border-bottom:none}
+.cp-from{color:var(--teal);font-weight:600}
+.cp-to{color:var(--blue);font-weight:600}
+.cp-rule{color:var(--g1);line-height:1.5}
+
+@media(max-width:900px){.spec-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">🛡</div>
+    <div>
+      <div class="nav-title">NetNam × Panasonic</div>
+      <div class="nav-subtitle">Phân vùng IT · OT · IDMZ</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html"><span class="nav-icon">🏠</span> Tổng quan</a></li>
+    <li><a href="hien-trang.html"><span class="nav-icon">🖥</span> Hiện trạng</a></li>
+    <li><a href="phuong-an.html"><span class="nav-icon">🔀</span> Phương án</a></li>
+    <li><a href="tieu-chuan.html" class="active"><span class="nav-icon">📋</span> Tiêu chuẩn KT</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Tổng quan</a> <span>›</span> <span style="color:var(--g1)">Tiêu chuẩn kỹ thuật</span></div>
+  <h1 class="page-title">Bảng <span class="accent" style="background:linear-gradient(90deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Tiêu chuẩn Kỹ thuật</span></h1>
+  <p class="page-desc">Nguyên tắc phân vùng mạng IT · IDMZ · OT theo mô hình Purdue / PERA và ISA/IEC 62443 — cơ sở thiết kế firewall rule, kiểm soát truy cập và vận hành.</p>
+</div>
+
+<div class="tab-section">
+  <!-- PILL BAR -->
+  <div class="pill-bar">
+    <button class="pill active" data-svc="cosokt" onclick="sw('cosokt',this)"><span class="pill-icon">📚</span> Cơ sở KT</button>
+    <button class="pill" data-svc="purdue" onclick="sw('purdue',this)"><span class="pill-icon">🏗</span> Purdue Model</button>
+    <button class="pill" data-svc="it" onclick="sw('it',this)"><span class="pill-icon">🖥</span> IT Zone</button>
+    <button class="pill" data-svc="idmz" onclick="sw('idmz',this)"><span class="pill-icon">🏛</span> IDMZ Zone</button>
+    <button class="pill" data-svc="ot" onclick="sw('ot',this)"><span class="pill-icon">⚙️</span> OT Zone</button>
+    <button class="pill" data-svc="ketnoi" onclick="sw('ketnoi',this)"><span class="pill-icon">🔀</span> Nguyên tắc kết nối</button>
+    <button class="pill" data-svc="sosanh" onclick="sw('sosanh',this)"><span class="pill-icon">📊</span> So sánh nhanh</button>
+    <button class="pill" data-svc="trachnhiem" onclick="sw('trachnhiem',this)"><span class="pill-icon">👥</span> Trách nhiệm</button>
+  </div>
+
+  <!-- PANEL: Cơ sở kỹ thuật -->
+  <div class="tab-panel active" id="tab-cosokt">
+    <div class="svc-hero" style="background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.2)">
+      <div class="svc-icon-big">📚</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">Cơ sở tiêu chuẩn</span><span class="badge b-blue">Tài liệu tham chiếu</span>
+        </div>
+        <div class="svc-desc">Thiết kế IT-IDMZ-OT trong tài liệu này dựa trên 3 mô hình và tiêu chuẩn tham chiếu chính của ngành công nghiệp — được các tổ chức quốc tế và nhà cung cấp giải pháp hàng đầu công nhận và áp dụng rộng rãi.</div>
+      </div>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:#60A5FA">🏗 Purdue Enterprise Reference Architecture (PERA)</div>
+        <ul class="spec-list">
+          <li>Mô hình phân lớp hệ thống công nghiệp từ Level 0 đến Level 5</li>
+          <li>Phân chia rõ Industrial Zone (Level 0-3) và Enterprise Zone (Level 4-5)</li>
+          <li>IDMZ nằm ở Level 3.5 — vùng đệm bắt buộc giữa IT và OT</li>
+          <li>Cơ sở để thiết kế phân tách network và firewall policy</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:#A78BFA">🛡 ISA/IEC 62443</div>
+        <ul class="spec-list">
+          <li>Bộ tiêu chuẩn an ninh mạng cho hệ thống tự động hóa công nghiệp (IACS)</li>
+          <li>Tiếp cận phân vùng bảo mật theo <strong style="color:var(--white)">Zones</strong> và <strong style="color:var(--white)">Conduits</strong></li>
+          <li>Zone: vùng tài sản có cùng mức bảo mật — Conduit: kênh kết nối có kiểm soát giữa zones</li>
+          <li>Nguồn: <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards" style="color:var(--blue)" target="_blank">ISA/IEC 62443 Series of Standards</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="spec-block-title" style="color:var(--teal)">🌐 CPwE — Converged Plantwide Ethernet (Cisco × Rockwell Automation)</div>
+      <ul class="spec-list">
+        <li>Kiến trúc tham chiếu cho mạng công nghiệp hội tụ — kết hợp IT và OT trên nền Ethernet chuẩn</li>
+        <li>IDMZ được đề xuất rõ ràng trong CPwE để tách biệt Enterprise Zone và Industrial Zone</li>
+        <li>Bao gồm thiết kế mẫu cho firewall, switch, wireless và security policy trong môi trường nhà máy</li>
+        <li>Nguồn: <a href="https://www.cisco.com/c/en/us/td/docs/solutions/Verticals/CPwE/3-5-1/IDMZ/DIG/CPwE_IDMZ_2_CVD/CPwE_IDMZ_2_Chap1.html" style="color:var(--blue)" target="_blank">Cisco / Rockwell Automation CPwE IDMZ Design Guide</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: Purdue Model -->
+  <div class="tab-panel" id="tab-purdue">
+    <div class="svc-hero" style="background:rgba(0,191,165,.07);border-color:rgba(0,191,165,.2)">
+      <div class="svc-icon-big">🏗</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">Purdue Model / PERA</span><span class="badge b-teal">Level 0 → Level 5</span>
+        </div>
+        <div class="svc-desc">Mô hình Purdue phân lớp 6 cấp độ chính (Level 0-5) và vùng đệm IDMZ ở Level 3.5. Hệ thống càng gần Level 0 → gần dây chuyền, yêu cầu thời gian thực cao. Càng gần Level 5 → quản trị doanh nghiệp, kết nối Cloud.</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g3)">🏭 Industrial Zone</div>
+    <div class="purdue-level" style="background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.2)">
+      <div class="level-badge" style="background:rgba(239,68,68,.2);color:#F87171">Level 0</div>
+      <div class="level-info">
+        <div class="level-name">Physical Process — Quá trình vật lý</div>
+        <div class="level-func">Tương tác trực tiếp với quy trình sản xuất và thiết bị hiện trường</div>
+        <div class="level-examples">Động cơ, van, cảm biến, robot, băng chuyền, thiết bị đo lường</div>
+      </div>
+    </div>
+    <div class="purdue-level" style="background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2)">
+      <div class="level-badge" style="background:rgba(245,158,11,.2);color:var(--orange)">Level 1</div>
+      <div class="level-info">
+        <div class="level-name">Basic Control — Điều khiển cơ bản</div>
+        <div class="level-func">Điều khiển cục bộ, đọc tín hiệu từ Level 0 và phát lệnh điều khiển</div>
+        <div class="level-examples">PLC, PAC, RTU, I/O module, safety controller</div>
+      </div>
+    </div>
+    <div class="purdue-level" style="background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.15)">
+      <div class="level-badge" style="background:rgba(245,158,11,.15);color:var(--orange)">Level 2</div>
+      <div class="level-info">
+        <div class="level-name">Supervisory Control — Điều khiển giám sát</div>
+        <div class="level-func">Giám sát, vận hành và điều chỉnh quy trình sản xuất</div>
+        <div class="level-examples">HMI, SCADA, operator workstation, alarm system</div>
+      </div>
+    </div>
+    <div class="purdue-level" style="background:rgba(124,58,237,.06);border-color:rgba(124,58,237,.15)">
+      <div class="level-badge" style="background:rgba(124,58,237,.15);color:#A78BFA">Level 3</div>
+      <div class="level-info">
+        <div class="level-name">Site Operations — Vận hành nhà máy</div>
+        <div class="level-func">Quản lý vận hành sản xuất trong phạm vi nhà máy</div>
+        <div class="level-examples">MES, historian, engineering workstation, quality system, production reporting</div>
+      </div>
+    </div>
+
+    <div style="margin:16px 0 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal)">⚖️ Level 3.5 — IDMZ</div>
+    <div class="purdue-level" style="background:rgba(0,191,165,.06);border:2px dashed rgba(0,191,165,.3)">
+      <div class="level-badge" style="background:rgba(0,191,165,.2);color:var(--teal)">L 3.5</div>
+      <div class="level-info">
+        <div class="level-name">Industrial DMZ — Vùng đệm bảo mật</div>
+        <div class="level-func">Không phải level sản xuất độc lập — là lớp trung gian kiểm soát mọi luồng trao đổi giữa IT và OT. <strong style="color:var(--white)">Không cho phép kết nối trực tiếp xuyên suốt từ Level 4/5 xuống Level 0/1/2/3.</strong></div>
+        <div class="level-examples">Jump server, file transfer server, patch relay, historian mirror, syslog collector, malware scan</div>
+      </div>
+    </div>
+
+    <div style="margin:16px 0 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g3)">🏢 Enterprise Zone</div>
+    <div class="purdue-level" style="background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.2)">
+      <div class="level-badge" style="background:rgba(59,130,246,.2);color:#60A5FA">Level 4</div>
+      <div class="level-info">
+        <div class="level-name">Site Business Planning — Kế hoạch kinh doanh cơ sở</div>
+        <div class="level-func">Hỗ trợ nghiệp vụ văn phòng và quản trị tại nhà máy</div>
+        <div class="level-examples">Mạng văn phòng, email nội bộ, file server, print server, inventory, local business apps</div>
+      </div>
+    </div>
+    <div class="purdue-level" style="background:rgba(59,130,246,.04);border-color:rgba(59,130,246,.15)">
+      <div class="level-badge" style="background:rgba(59,130,246,.15);color:#60A5FA">Level 5</div>
+      <div class="level-info">
+        <div class="level-name">Enterprise — Doanh nghiệp / Tập đoàn</div>
+        <div class="level-func">Quản trị cấp doanh nghiệp, kết nối Internet, Cloud và hệ thống tập đoàn</div>
+        <div class="level-examples">ERP, tài chính, nhân sự, SCM, BI, Internet edge, Cloud services</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: IT Zone -->
+  <div class="tab-panel" id="tab-it">
+    <div class="svc-hero" style="background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.2)">
+      <div class="svc-icon-big">🖥</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">IT Zone</span><span class="badge b-blue">Level 4 – 5</span>
+        </div>
+        <div class="svc-desc">Vùng mạng phục vụ người dùng văn phòng, quản trị doanh nghiệp và các ứng dụng nghiệp vụ thông thường. Có số lượng người dùng lớn, mức độ thay đổi cao, nhiều thiết bị đầu cuối và thường có kết nối Internet/Cloud.</div>
+      </div>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:#60A5FA">🖥 Thành phần điển hình</div>
+        <ul class="spec-list">
+          <li>Thiết bị người dùng: Laptop, desktop, máy in, thiết bị di động</li>
+          <li>Ứng dụng nghiệp vụ: ERP, email, intranet, file server, quản lý kho</li>
+          <li>Hạ tầng định danh: Active Directory, LDAP, DNS, DHCP</li>
+          <li>Bảo mật IT: Endpoint protection, EDR, proxy, email security, Internet firewall</li>
+          <li>Hạ tầng mạng: Core switch, access switch, Wi-Fi corporate, router WAN</li>
+          <li>Hệ thống quản trị: Monitoring, backup, patch management, IT ticketing</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:#60A5FA">✅ Vai trò & Trách nhiệm</div>
+        <ul class="spec-list">
+          <li>Cung cấp môi trường làm việc cho người dùng văn phòng và khối vận hành doanh nghiệp</li>
+          <li>Quản lý danh tính, máy tính, quyền truy cập và chính sách bảo mật chung</li>
+          <li>Cung cấp dịch vụ hỗ trợ nhà máy: ERP, báo cáo sản xuất, quản lý kho</li>
+          <li><strong style="color:var(--red)">Không</strong> truy cập trực tiếp PLC, HMI, SCADA hoặc engineering WS trong OT</li>
+          <li>Trao đổi dữ liệu với OT phải thông qua dịch vụ trung gian tại IDMZ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="req-block" style="border-color:var(--blue)">
+      <div class="req-title" style="color:#60A5FA">📌 Yêu cầu kiểm soát IT Zone</div>
+      <ul class="req-list">
+        <li>Thiết bị IT không được kết nối trực tiếp vào switch hoặc subnet OT</li>
+        <li>Người dùng IT không được truy cập trực tiếp vào hệ thống điều khiển sản xuất</li>
+        <li>Kết nối từ IT sang OT phải đi qua firewall và dịch vụ trung gian trong IDMZ</li>
+        <li>Áp dụng xác thực tập trung, phân quyền theo vai trò, ghi log và giám sát truy cập</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: IDMZ Zone -->
+  <div class="tab-panel" id="tab-idmz">
+    <div class="svc-hero" style="background:rgba(124,58,237,.07);border-color:rgba(124,58,237,.2)">
+      <div class="svc-icon-big">🏛</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">IDMZ Zone</span><span class="badge" style="background:rgba(124,58,237,.2);color:#A78BFA">Level 3.5</span>
+        </div>
+        <div class="svc-desc">Vùng trung gian giữa IT và OT — dùng để kiểm soát, trung chuyển, giám sát và ghi log các luồng trao đổi dữ liệu. IDMZ <strong>không phải chỉ là một VLAN riêng</strong> — phải là vùng bảo mật có kiểm soát, mọi kết nối được giới hạn theo chính sách, có điểm kết thúc rõ ràng và khả năng truy vết.</div>
+      </div>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:#A78BFA">🏗 Thành phần điển hình</div>
+        <ul class="spec-list">
+          <li>Gateway truy cập: Jump server, bastion host, remote access gateway, VPN gateway</li>
+          <li>Trung gian dữ liệu: Historian mirror, report server, database replica, API gateway</li>
+          <li>Trung gian file: Secure file transfer, malware scanning server, file staging</li>
+          <li>Cập nhật & đồng bộ: WSUS relay, antivirus update relay, patch repository</li>
+          <li>Giám sát & ghi log: Syslog collector, SIEM connector, network monitoring probe</li>
+          <li>Bảo mật: Firewall, IDS/IPS, network access control, PAM/MFA gateway</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:#A78BFA">✅ Vai trò</div>
+        <ul class="spec-list">
+          <li>Điểm trung gian bắt buộc cho luồng trao đổi giữa IT và OT</li>
+          <li>Cho phép IT khai thác dữ liệu sản xuất mà không truy cập trực tiếp hệ thống điều khiển</li>
+          <li>Cho phép kỹ sư/vendor được ủy quyền truy cập OT qua jump server có kiểm soát</li>
+          <li>Kiểm tra file, bản vá, gói cài đặt trước khi đưa vào OT</li>
+          <li>Thu thập log và dữ liệu giám sát từ OT để chuyển về hệ thống quản trị tập trung</li>
+        </ul>
+      </div>
+    </div>
+    <div class="req-block" style="border-color:var(--purple)">
+      <div class="req-title" style="color:#A78BFA">📌 Yêu cầu kiểm soát IDMZ Zone</div>
+      <ul class="req-list">
+        <li>Không cho phép luồng kết nối xuyên trực tiếp từ IT sang OT qua IDMZ</li>
+        <li>Mỗi phiên kết nối phải kết thúc tại IDMZ trước khi đi tiếp sang vùng khác</li>
+        <li>Chỉ mở port, protocol và hướng kết nối thật sự cần thiết và đã được phê duyệt</li>
+        <li>Tài khoản truy cập qua IDMZ phải có xác thực mạnh — ưu tiên MFA và ghi log phiên</li>
+        <li>Máy chủ trong IDMZ phải được hardening, cập nhật bản vá, backup và giám sát định kỳ</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: OT Zone -->
+  <div class="tab-panel" id="tab-ot">
+    <div class="svc-hero" style="background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.2)">
+      <div class="svc-icon-big">⚙️</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">OT Zone</span><span class="badge b-orange">Level 0 – 3</span>
+        </div>
+        <div class="svc-desc">Vùng mạng phục vụ sản xuất, điều khiển, giám sát và vận hành thiết bị công nghiệp. Ưu tiên cao nhất là <strong>an toàn, tính sẵn sàng, ổn định và liên tục</strong> của dây chuyền sản xuất — là vùng cần được bảo vệ nghiêm ngặt nhất.</div>
+      </div>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:var(--orange)">⚙️ Thành phần điển hình</div>
+        <ul class="spec-list">
+          <li>Điều khiển công nghiệp: PLC, RTU, DCS controller, safety controller</li>
+          <li>Giám sát và vận hành: HMI, SCADA server, operator workstation</li>
+          <li>Kỹ thuật sản xuất: Engineering workstation, programming station</li>
+          <li>Thu thập dữ liệu: Historian, OPC server, data acquisition server</li>
+          <li>Thiết bị hiện trường: Sensor, actuator, barcode reader, industrial camera</li>
+          <li>Hạ tầng mạng: Industrial switch, industrial firewall, ring network, fiber uplink</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <div class="spec-block-title" style="color:var(--orange)">✅ Vai trò</div>
+        <ul class="spec-list">
+          <li>Điều khiển và giám sát thiết bị, máy móc, dây chuyền sản xuất</li>
+          <li>Đảm bảo hệ thống sản xuất hoạt động ổn định, đúng quy trình và an toàn</li>
+          <li>Cung cấp dữ liệu sản xuất cho các hệ thống khác qua kênh trung gian có kiểm soát</li>
+          <li>Giới hạn tối đa thay đổi bất thường, truy cập trái phép và thiết bị chưa phê duyệt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="req-block" style="border-color:var(--orange)">
+      <div class="req-title" style="color:var(--orange)">📌 Yêu cầu kiểm soát OT Zone</div>
+      <ul class="req-list">
+        <li>OT không được truy cập Internet trực tiếp</li>
+        <li>Người dùng văn phòng không được cắm máy tính cá nhân vào mạng OT</li>
+        <li>Chỉ thiết bị, tài khoản, port và protocol đã được phê duyệt mới được phép kết nối</li>
+        <li>Quản lý danh sách tài sản được phép theo IP, MAC, switch port, vị trí và người phụ trách</li>
+        <li>Bảo trì, cập nhật, cấu hình PLC/HMI/SCADA phải theo quy trình thay đổi và có phê duyệt</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: Nguyên tắc kết nối -->
+  <div class="tab-panel" id="tab-ketnoi">
+    <div class="svc-hero" style="background:rgba(0,191,165,.07);border-color:rgba(0,191,165,.2)">
+      <div class="svc-icon-big">🔀</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">Nguyên tắc kết nối giữa các vùng</span>
+        </div>
+        <div class="svc-desc">Quy định kỹ thuật cho từng loại luồng kết nối giữa IT, IDMZ và OT — cơ sở để thiết kế firewall rule matrix và security policy.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Bảng nguyên tắc kết nối</div>
+      <div style="margin-top:12px;border:1px solid var(--border);border-radius:10px;overflow:hidden">
+        <div class="conn-principle" style="background:rgba(0,0,0,.3);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g3)">
+          <span>Luồng kết nối</span><span></span><span>Nguyên tắc kỹ thuật</span>
+        </div>
+        <div class="conn-principle"><span class="cp-from">IT</span><span>→ OT</span><span class="cp-rule"><span class="badge b-red" style="margin-right:6px">Cấm trực tiếp</span>Phải đi qua IDMZ — không cho phép kết nối thẳng từ IT subnet sang OT subnet</span></div>
+        <div class="conn-principle"><span class="cp-from">OT</span><span>→ IT</span><span class="cp-rule"><span class="badge b-red" style="margin-right:6px">Cấm trực tiếp</span>Nếu cần gửi dữ liệu — gửi đến dịch vụ trung gian trong IDMZ, không đến IT trực tiếp</span></div>
+        <div class="conn-principle"><span class="cp-from">IT</span><span>→ IDMZ</span><span class="cp-rule"><span class="badge b-orange" style="margin-right:6px">Có kiểm soát</span>Chỉ mở dịch vụ cần thiết: jump server, report portal, file gateway</span></div>
+        <div class="conn-principle"><span class="cp-from">IDMZ</span><span>→ OT</span><span class="cp-rule"><span class="badge b-orange" style="margin-right:6px">Có kiểm soát</span>Chỉ mở port/protocol tối thiểu theo từng ứng dụng sản xuất cụ thể</span></div>
+        <div class="conn-principle"><span class="cp-from">OT</span><span>→ Internet</span><span class="cp-rule"><span class="badge b-red" style="margin-right:6px">Không cho phép</span>OT không truy cập Internet dưới mọi hình thức</span></div>
+        <div class="conn-principle"><span class="cp-from">Vendor Remote</span><span>→ OT</span><span class="cp-rule"><span class="badge b-orange" style="margin-right:6px">Qua IDMZ</span>VPN/MFA vào IDMZ, sau đó qua jump server đến OT theo lịch và có ghi log phiên</span></div>
+        <div class="conn-principle"><span class="cp-from">File IT/OT</span><span>→ OT</span><span class="cp-rule"><span class="badge b-orange" style="margin-right:6px">Qua IDMZ</span>File gateway trong IDMZ, có quét mã độc (CDR) và phê duyệt trước khi đưa vào OT</span></div>
+        <div class="conn-principle" style="border-bottom:none"><span class="cp-from">Patch/AV</span><span>→ OT</span><span class="cp-rule"><span class="badge b-orange" style="margin-right:6px">Qua IDMZ</span>IT/Internet cập nhật vào relay IDMZ — OT lấy bản cập nhật từ relay, không lấy trực tiếp</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: So sánh nhanh -->
+  <div class="tab-panel" id="tab-sosanh">
+    <div class="svc-hero" style="background:rgba(6,182,212,.07);border-color:rgba(6,182,212,.2)">
+      <div class="svc-icon-big">📊</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">So sánh nhanh IT · IDMZ · OT</span>
+        </div>
+        <div class="svc-desc">Bảng so sánh 9 tiêu chí giữa 3 vùng mạng — giúp đội IT, OT và ban quản lý hiểu rõ sự khác biệt về mục đích, yêu cầu và rủi ro.</div>
+      </div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead>
+        <tr>
+          <th>Tiêu chí</th>
+          <th style="color:#60A5FA">IT Zone</th>
+          <th style="color:#A78BFA">IDMZ Zone</th>
+          <th style="color:var(--orange)">OT Zone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Phạm vi Purdue</td><td>Level 4-5</td><td>Level 3.5</td><td>Level 0-3</td></tr>
+        <tr><td>Mục đích chính</td><td>Hỗ trợ người dùng và ứng dụng doanh nghiệp</td><td>Trung gian, kiểm soát và giám sát trao đổi IT/OT</td><td>Điều khiển và vận hành sản xuất</td></tr>
+        <tr><td>Ưu tiên cao nhất</td><td>Bảo mật thông tin, năng suất người dùng</td><td>Kiểm soát truy cập, tách lớp, ghi log</td><td>An toàn, ổn định, sẵn sàng cao</td></tr>
+        <tr><td>Mức độ thay đổi</td><td><span class="badge b-red">Cao</span></td><td><span class="badge b-orange">Trung bình — có kiểm soát</span></td><td><span class="badge b-green">Thấp — theo cửa sổ bảo trì</span></td></tr>
+        <tr><td>Đối tượng sử dụng</td><td>Nhân viên văn phòng, IT admin</td><td>IT/OT admin, kỹ sư được ủy quyền, vendor</td><td>Kỹ sư sản xuất, operator, OT admin</td></tr>
+        <tr><td>Kết nối Internet</td><td><span class="badge b-blue">Có — qua chính sách IT</span></td><td><span class="badge b-orange">Hạn chế — chỉ khi cần</span></td><td><span class="badge b-red">Không trực tiếp</span></td></tr>
+        <tr><td>Kết nối vùng khác</td><td>Qua firewall/IDMZ</td><td>Kết nối có kiểm soát với IT và OT</td><td>Chỉ ra IDMZ theo rule được phê duyệt</td></tr>
+        <tr><td>Rủi ro chính</td><td>Malware, phishing, endpoint compromise</td><td>Cấu hình sai tạo cầu nối tấn công</td><td>Dừng sản xuất, thay đổi trái phép, ảnh hưởng an toàn</td></tr>
+        <tr><td>Kiểm soát thiết bị</td><td>AD, MDM, endpoint protection</td><td>Hardening, patch, giám sát định kỳ</td><td>IP/MAC inventory, port security, change management</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- PANEL: Trách nhiệm -->
+  <div class="tab-panel" id="tab-trachnhiem">
+    <div class="svc-hero" style="background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.2)">
+      <div class="svc-icon-big">👥</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="svc-name">Vai trò vận hành & Trách nhiệm</span>
+        </div>
+        <div class="svc-desc">Phân công trách nhiệm rõ ràng giữa các nhóm — đảm bảo không có vùng mờ trong quản lý và vận hành hệ thống IT-IDMZ-OT.</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px"><table>
+      <thead><tr><th>Nhóm phụ trách</th><th>Trách nhiệm chính</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:#60A5FA">IT</strong></td><td>Quản lý mạng IT, AD, endpoint, Internet, firewall phía IT, log tập trung</td></tr>
+        <tr><td><strong style="color:var(--orange)">OT / Sản xuất</strong></td><td>Quản lý PLC, HMI, SCADA, engineering workstation và quy trình sản xuất</td></tr>
+        <tr><td><strong style="color:var(--red)">An toàn thông tin</strong></td><td>Chính sách truy cập, giám sát sự kiện, đánh giá rủi ro, xử lý sự cố bảo mật</td></tr>
+        <tr><td><strong style="color:var(--purple)">Nhà cung cấp / Vendor</strong></td><td>Hỗ trợ thiết bị, cấu hình ứng dụng, truy cập remote theo quy trình được phê duyệt</td></tr>
+        <tr><td><strong style="color:var(--teal)">Ban quản lý nhà máy</strong></td><td>Phê duyệt chính sách, chấp nhận rủi ro, ưu tiên ngân sách và lộ trình triển khai</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="card">
+      <div class="card-title">🔒 Kiểm soát thiết bị tự ý cắm vào mạng</div>
+      <div class="tbl-wrap" style="margin-top:12px"><table>
+        <thead><tr><th>Biện pháp</th><th>Vai trò</th></tr></thead>
+        <tbody>
+          <tr><td>Quản lý switch tập trung</td><td>Biết thiết bị nào đang cắm vào port nào, tại vị trí nào</td></tr>
+          <tr><td>Tắt port không sử dụng</td><td>Giảm điểm kết nối trái phép</td></tr>
+          <tr><td>Port security</td><td>Giới hạn MAC address được phép trên từng cổng switch</td></tr>
+          <tr><td>802.1X / MAB</td><td>Xác thực thiết bị trước khi cấp quyền vào mạng</td></tr>
+          <tr><td>Quarantine VLAN</td><td>Đưa thiết bị lạ vào vùng cách ly thay vì mạng sản xuất</td></tr>
+          <tr><td>IP/MAC inventory</td><td>Đối chiếu thiết bị thực tế với danh sách được phê duyệt</td></tr>
+          <tr><td>Change management</td><td>Mọi thay đổi port, IP, VLAN, firewall rule phải có yêu cầu và phê duyệt</td></tr>
+          <tr><td>Log và cảnh báo</td><td>Phát hiện thiết bị mới, thiết bị lạ hoặc thay đổi bất thường</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">🛡</div>
+    <div class="footer-info"><strong>NetNam × Panasonic</strong> — Giải pháp phân vùng mạng IT · OT · IDMZ cho hệ thống nhà máy</div>
+  </div>
+  <div class="footer-right">NetNam Corporation · v1.0 — 2026</div>
+</footer>
+
+<script>
+  addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>30));
+  function sw(id,btn){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
